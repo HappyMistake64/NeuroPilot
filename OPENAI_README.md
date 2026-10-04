@@ -82,3 +82,59 @@ Automatické testy používají podepsané testovací ID tokeny, místní callba
 - Ověřování ID tokenu: https://developers.openai.com/siwc/website
 
 Dokumentace ověřena během této implementace. Při budoucích změnách protokolu integraci znovu ověř; nepoužívej náhradní neoficiální endpointy.
+
+## Cloudový Codex a vzdálená VM
+
+Ověřeno proti oficiální dokumentaci 4. 10. 2026:
+[Self-hosted VMs](https://developers.openai.com/siwc/token-sharing-open-source/self-hosted-vms).
+Pro tuto přímou OSS integraci je dokumentovaný postup **lokální OAuth ve stejném
+NeuroPilotu → bezpečný přenos registrace → import na VM**. `--no-browser` nemění
+loopback callback na vzdálené přihlášení. Přihlášení Codex CLI, jeho device-code
+režim ani jeho soubor `auth.json` nejsou registrací NeuroPilotu a neimportují se.
+
+1. Na VM spusť `python -m rsi openai-status`. Tím vznikne a uloží se vlastní host ID
+   VM, zatím bez přihlášení. Úspěch tohoto příkazu není důkaz inference.
+2. Na svém počítači dokonči `python -m rsi openai-login` a zjisti ID registrace
+   pomocí `python -m rsi openai-status`. Použij stejný účet a workspace, který má
+   používat VM. Import vyžaduje dosud platný podepsaný ID token; pokud vypršel,
+   nejdřív lokální přihlášení obnov.
+3. Přenes chráněný `~/.config/neuropilot/openai/accounts.json` přes dostupný
+   zabezpečený kanál (například SSH/SCP) mimo repozitář, RSI state, sdílené složky
+   a zálohy. Soubor na VM musí vlastnit aktuální uživatel a mít práva `0600`.
+   Neposílej jeho obsah do chatu, GitHubu ani argumentů příkazové řádky.
+4. Na VM importuj **jednu explicitně vybranou registraci**. Nahraď cestu a ID:
+
+   ```bash
+   python -m rsi openai-import --file /chranena/cesta/accounts.json --account oaiapp_ID
+   python -m rsi openai-models
+   python -m rsi config --set provider=chatgpt --set openai_model=ID_Z_VYPISU
+   python -m rsi provider-check
+   ```
+
+Import zachová vlastní host ID VM a ostatní účty. Ověří podpis ID tokenu,
+issuer, audience, expiraci, shodu subjectu a scope pro předplatné; neznámé položky
+nekopíruje. Odmítne symlink, nechráněný soubor a zdroj nebo cíl uvnitř repozitáře
+či zvoleného RSI state. Výstup neobsahuje tokeny a má `inference_verified: false`.
+Teprve dokončený `provider-check` s `model_inference_verified: true` potvrzuje
+skutečnou modelovou odpověď aplikace. Po importu odstraň přenosovou kopii bezpečným
+postupem svého prostředí; další obnovování rotujících tokenů nech na VM a stejnou
+relaci současně neobnovuj na notebooku. Import relaci nekopíruje do nového
+nezávislého přihlášení; host-specific attribution a revocation přenesených relací
+zatím podle dokumentace nejsou dostupné.
+
+HTTP transport respektuje zděděné `HTTP_PROXY`/`HTTPS_PROXY`, `NO_PROXY` a CA trust
+prostředí, včetně procesu inference. TLS ověřování zůstává zapnuté, přesměrování
+se odmítají. Proxy musí být důvěryhodná a nastavená správcem prostředí.
+
+Pro samostatný test s nejvýše jedním dotazem lze použít oddělený state:
+
+```bash
+python -m rsi --state /chranena/cesta/connection-check config \
+  --set provider=chatgpt --set openai_model=ID_Z_VYPISU \
+  --set max_calls=1 --set max_tokens=10240 --set max_seconds=120
+python -m rsi --state /chranena/cesta/connection-check provider-check
+```
+
+Tokenový limit zůstává účetní, nikoli tvrdý limit serveru. Tento test nespouští
+kandidátní kód. Baseline a kampaně nadále vyžadují úspěšné ověření sandboxu;
+chybějící izolace se neobchází.

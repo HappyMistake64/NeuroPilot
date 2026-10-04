@@ -39,3 +39,24 @@ Výstupem první kampaně může být i zamítnutí všech změn. Platný negati
 ## Výzkumná revize
 
 Výzkum verze 3.3.0 a opravy 3.3.1 dokumentuje `research/RESEARCH_REPORT.md`; přehled s grafy je v `research/report.html`. Naměřené limity rozhodovacích bran se nezaměňují za výkon skutečného modelu.
+
+## Cloudové připojení — 4. 10. 2026
+
+Opraven transport pro zděděnou cloudovou proxy a přidán chráněný import vlastní
+registrace NeuroPilotu podle oficiálního postupu pro VM. 220 Python testů,
+test agenta a oba DOM testy prošly. Živá OIDC discovery prošla; přihlášení Codexu
+se nepovažuje za přihlášení aplikace. `provider-check` zůstal `blocked` bez účtu,
+s nulou modelových volání a `model_inference_verified: false`. Sandbox nebyl
+ověřen, experimenty se nespouštěly. Důkazy a zbývající kroky:
+`CLOUD_CONNECTION_REPORT.md`, cloudový postup: `OPENAI_README.md`.
+
+
+### Následné živé ověření sandboxu
+
+Docker i Bubblewrap nyní procházejí skutečným probe. Dockeru byl připraven obraz;
+Bubblewrap má nově kořen pouze pro čtení. 222 testů prošlo se zapnutými skutečnými
+testy obou sandboxů; oba DOM testy prošly. `reference-check` přes Bubblewrap ověřil
+60 správných referencí a odhalil 60 chybných řešení. Izolace již neblokuje další
+práci. Přímé připojení modelu stále vyžaduje vlastní OAuth registraci NeuroPilotu;
+na telefonu nelze lokální loopback přihlášení cloudové aplikace dokončit.
+Aktuální důkazy jsou v `verification/cloud_*` a `CLOUD_CONNECTION_REPORT.md`.

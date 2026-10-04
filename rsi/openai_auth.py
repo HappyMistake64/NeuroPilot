@@ -7,8 +7,10 @@ import base64
 import fcntl
 import hashlib
 import json
+import math
 import os
 import secrets
+import stat
 import threading
 import time
 import uuid
@@ -42,7 +44,10 @@ def safe_code(value):
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self,*args,**kwargs): raise ServiceError('redirect_rejected')
 
-def opener(): return build_opener(ProxyHandler({}),NoRedirect())
+def opener():
+    # Managed cloud runtimes require their inherited proxy and CA trust.
+    # Keep redirect rejection: bearer tokens must not follow another endpoint.
+    return build_opener(ProxyHandler(),NoRedirect())
 
 def official_url(url,host):
     p=urlsplit(url)
@@ -127,6 +132,53 @@ class Accounts:
             rows=[{'id':cid,'email':a.get('email',''),'signed_in':bool(a.get('refresh_token')),
                    'plan_permission':PLAN_SCOPE in a.get('scopes',[])} for cid,a in data['accounts'].items()]
             return {'active':data['active'],'accounts':rows,'inference_verified':False}
+
+    def import_registration(self,source,client_id,forbidden_roots=()):
+        """Import one native NeuroPilot registration, never the source host ID.
+
+        The caller transfers the file over a secure channel. No Codex credential
+        discovery, token arguments, or credential contents in returned results.
+        """
+        if not isinstance(client_id,str) or not client_id.startswith('oaiapp_') or len(client_id)>250:
+            raise RSIError('Invalid issued OpenAI client ID')
+        source=Path(source).expanduser()
+        roots=[Path(__file__).resolve().parents[1],*(Path(p).resolve() for p in forbidden_roots)]
+        if any(p.resolve().is_relative_to(root) for p in (source,self.root) for root in roots):
+            raise RSIError('Credentials must stay outside the project and RSI state')
+        # Persist the destination host before reading or validating an import.
+        self.status()
+        try:
+            fd=os.open(source,os.O_RDONLY|os.O_NOFOLLOW|os.O_NONBLOCK)
+            with os.fdopen(fd,'rb') as stream:
+                info=os.fstat(stream.fileno())
+                if not stat.S_ISREG(info.st_mode) or info.st_uid!=os.getuid() or info.st_mode&0o077:
+                    raise RSIError('Import requires an owner-only regular credential file (0600)')
+                raw=stream.read(1_000_001)
+            if len(raw)>1_000_000: raise ValueError()
+            imported=json.loads(raw)
+            record=imported['accounts'][client_id]
+            if not isinstance(record,dict) or record.get('client_id')!=client_id or record.get('issuer')!=ISSUER:
+                raise ValueError()
+            for key in ('subject','access_token','refresh_token','id_token'):
+                if not isinstance(record.get(key),str) or not record[key]: raise ValueError()
+            scopes=record.get('scopes')
+            if not isinstance(scopes,list) or not all(isinstance(s,str) for s in scopes) or PLAN_SCOPE not in scopes:
+                raise ValueError()
+            expiry=record.get('expires_at')
+            if type(expiry) not in (int,float) or not math.isfinite(expiry) or expiry<=0: raise ValueError()
+        except (OSError,ValueError,KeyError,TypeError):
+            raise RSIError('Invalid protected NeuroPilot import file; no credentials imported') from None
+        # A fresh local sign-in is required if the retained ID token has expired.
+        claims=validate_identity(record['id_token'],client_id)
+        if claims['sub']!=record['subject']: raise RSIError('Imported ChatGPT identity mismatch')
+        clean={key:record[key] for key in ('client_id','issuer','subject','access_token','refresh_token','id_token','scopes','expires_at')}
+        clean['email']=claims.get('email','')
+        with self.locked():
+            data=self._read();old=data['accounts'].get(client_id)
+            if old and old.get('subject') not in (None,clean['subject']):
+                raise RSIError('ChatGPT account identity changed')
+            data['accounts'][client_id]=clean;data['active']=client_id;self._save(data)
+        return {'imported':True,'inference_verified':False,'host_id_preserved':True}
 
     def prepare(self,redirect_uri,client_id=None):
         with self.locked():
