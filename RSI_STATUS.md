@@ -49,3 +49,14 @@ se nepovažuje za přihlášení aplikace. `provider-check` zůstal `blocked` be
 s nulou modelových volání a `model_inference_verified: false`. Sandbox nebyl
 ověřen, experimenty se nespouštěly. Důkazy a zbývající kroky:
 `CLOUD_CONNECTION_REPORT.md`, cloudový postup: `OPENAI_README.md`.
+
+
+### Následné živé ověření sandboxu
+
+Docker i Bubblewrap nyní procházejí skutečným probe. Dockeru byl připraven obraz;
+Bubblewrap má nově kořen pouze pro čtení. 222 testů prošlo se zapnutými skutečnými
+testy obou sandboxů; oba DOM testy prošly. `reference-check` přes Bubblewrap ověřil
+60 správných referencí a odhalil 60 chybných řešení. Izolace již neblokuje další
+práci. Přímé připojení modelu stále vyžaduje vlastní OAuth registraci NeuroPilotu;
+na telefonu nelze lokální loopback přihlášení cloudové aplikace dokončit.
+Aktuální důkazy jsou v `verification/cloud_*` a `CLOUD_CONNECTION_REPORT.md`.

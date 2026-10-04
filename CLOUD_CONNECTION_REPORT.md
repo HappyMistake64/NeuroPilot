@@ -64,7 +64,7 @@ Nebyl proveden autentizovaný HTTP inference request. Neúspěšný preflight se
 nevydává za skutečný modelový dotaz. K dokončení chybí chráněná registrace,
 načtení modelového katalogu a jeden úspěšný `provider-check`.
 
-`doctor` navíc odmítl experimenty: Podman není nainstalován, Docker nemá lokální
+Při prvním ověření `doctor` odmítl experimenty: Podman není nainstalován, Docker nemá lokální
 obraz a Bubblewrap neprošel probe. Nebyla spuštěna baseline ani kampaň,
 nebyla oslabena izolace, rozpočty, přijímací brány ani ochrana skrytých testů.
 
@@ -83,3 +83,38 @@ Repozitář neměl npm lockfile, proto bylo použito `npm install`.
 
 Testy rozhraní běžely s `PYTHON=/workspace/NeuroPilot/.venv/bin/python`.
 DOM testy ani podepsané testovací JWT nedokládají živou inferenci.
+
+
+## Následná oprava sandboxu
+
+Docker daemon je funkční; byl stažen požadovaný obraz `python:3.12-slim`.
+Docker nyní úspěšně ověřuje izolaci. Digest a výsledky kontrol jsou v
+`verification/cloud_sandbox_check.json`.
+
+Bubblewrap měl zapisovatelný vlastní kořenový tmpfs. Probe tak dokázal vytvořit
+soubory `/root` a `/workspace` uvnitř sandboxu a správně běh odmítl; nešlo o zápis
+do hostitelského `/root` nebo `/workspace`. Přidáno `--remount-ro /` po sestavení
+mountů. Kořen je nyní pouze pro čtení, oddělený `/tmp` zůstává zapisovatelný.
+Stávající kontroly nebyly zmírněny. Bubblewrap nyní prochází všemi kontrolami.
+
+Ověření po opravě:
+
+- `NEUROPILOT_TEST_SANDBOXES=bwrap,docker python -m pytest tests -q`:
+  **222 passed**, včetně dvou skutečných testů sandboxu. Bez této proměnné se
+  explicitní integrační testy přeskočí, aby unit suite nevyžadovala Docker.
+- Oba DOM testy opět prošly.
+- Skutečný `reference-check` přes Bubblewrap: **60/60 referencí prošlo a 60/60
+  vadných řešení bylo odhaleno**, bez modelu. Výsledek je v
+  `verification/cloud_reference_check.json`.
+- Aktuální `doctor`: **sandbox.ok=true**, model stále bez přihlášení;
+  `ready=false`. Viz `verification/cloud_doctor.json`.
+- Opakovaný `provider-check`: `blocked`, 0 modelových volání, inference neověřena.
+  Viz `verification/cloud_provider_check_latest.json`.
+
+Uživatel má k dispozici pouze telefon. Současné přímé OAuth s loopback callbackem
+nelze dokončit na telefonu pro aplikaci běžící na cloudové VM. Oficiální postup
+pro tuto integraci vyžaduje lokální přihlášení stejné aplikace a přenos registrace.
+Codex CLI má vlastní podporovaný device-code login, ale jeho registrace není
+registrací přímého provideru NeuroPilotu. Nebyl zaveden neoficiální endpoint,
+kopírovány tokeny Codexu ani deklarována neprovedená inference. Zbývá získat vlastní
+registraci NeuroPilotu; izolace už není překážkou.

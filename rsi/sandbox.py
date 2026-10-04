@@ -98,7 +98,7 @@ class Sandbox:
             cmd=[exe,'--unshare-all','--die-with-parent','--new-session','--cap-drop','ALL','--clearenv','--ro-bind','/usr','/usr']
             for item in ('/lib','/lib64'):
                 if Path(item).exists(): cmd += ['--ro-bind',item,item]
-            cmd += ['--proc','/proc','--dev','/dev','--tmpfs','/tmp','--ro-bind',str(folder),'/work','--chdir','/work','--setenv','PATH','/usr/bin:/bin','--setenv','PYTHONDONTWRITEBYTECODE','1','--seccomp',str(sec.fileno()),'/usr/bin/python3','-I','-B','/work/main.py']
+            cmd += ['--proc','/proc','--dev','/dev','--tmpfs','/tmp','--ro-bind',str(folder),'/work','--remount-ro','/','--chdir','/work','--setenv','PATH','/usr/bin:/bin','--setenv','PYTHONDONTWRITEBYTECODE','1','--seccomp',str(sec.fileno()),'/usr/bin/python3','-I','-B','/work/main.py']
             return self._process(cmd,folder,timeout,cancel,(sec.fileno(),),self.cfg['memory_mb'])
     def run(self,files,timeout=None,cancel=None,_probing=False):
         if not self.backend: self.probe()
