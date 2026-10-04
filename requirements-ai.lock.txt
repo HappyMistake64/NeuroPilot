@@ -1363,9 +1363,9 @@ rich==15.0.0 \
     --hash=sha256:33bd4ef74232fb73fe9279a257718407f169c09b78a87ad3d296f548e27de0bb \
     --hash=sha256:edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36
     # via typer
-safehttpx==0.1.7 \
-    --hash=sha256:c4f4a162db6993464d7ca3d7cc4af0ffc6515a606dfd220b9f82c6945d869cde \
-    --hash=sha256:db201c0978c41eddb8bb480f3eee59dd67304fdd91646035e9d9a720049a9d23
+safehttpx==0.2.0 \
+    --hash=sha256:bd698a5a1730777040ccfdac0aef7a7bdb10f59931796c4c99c003dc90dff281 \
+    --hash=sha256:ffb8a246ea541abd79febba40591e3fc380380636f75376c0dff0aed6e3d7e29
     # via gradio
 safetensors==0.8.0 \
     --hash=sha256:040070828e36dc8e122178bbbd5830ff9e97920affb84cbe0f46442497bed358 \
