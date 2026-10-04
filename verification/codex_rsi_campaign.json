@@ -1,0 +1,120 @@
+{
+  "run_id": "run-02edf3b63d3c",
+  "kind": "campaign",
+  "generations": [
+    {
+      "index": 1,
+      "parent": "agent-d1fe1545e5b6",
+      "author": "agent-d1fe1545e5b6",
+      "status": "rejected_development",
+      "candidate": "agent-047e036cce07",
+      "development": {
+        "new_wins": [],
+        "regressions": [],
+        "unstable": [],
+        "parent_resolved": 20,
+        "candidate_resolved": 20,
+        "attempts_each": 20,
+        "tasks": 20,
+        "gate_passed": false,
+        "interpretation": "pilot operational gate, not a statistical proof",
+        "capability_gate_passed": false,
+        "efficiency": {
+          "gate_passed": false,
+          "metric": "actual_tokens",
+          "required_saving_percent": 15,
+          "parent_tokens": 39702,
+          "candidate_tokens": 40694,
+          "saving_percent": -2.4986146793612414,
+          "telemetry_complete": true,
+          "same_outcomes": true,
+          "stable": true,
+          "parent_median_seconds": 6.696168538000165,
+          "candidate_median_seconds": 7.473237787499329,
+          "interpretation": "Efficiency only; timing is descriptive and not an acceptance gate."
+        },
+        "efficiency_gate_passed": false
+      }
+    }
+  ],
+  "actual_rsi_improvement_proven": false,
+  "environment": {
+    "implementation": "16a7d4a90f71cbc3d1406e5ec4293404c594aa2732fd2f21080252da0ada81c0",
+    "benchmark": {
+      "sha256": "7c578f3363c7ec7320a0e67650c4a1279f29625676ed3af485a8221e65178108",
+      "counts": {
+        "dev": 20,
+        "validation": 20,
+        "final": 20
+      },
+      "kind": "authored synthetic pilot; not SWE-bench"
+    },
+    "model": {
+      "provider": "codex_chatgpt",
+      "model": "gpt-6.1-sol",
+      "seed_supported": false,
+      "weights_pinned": false,
+      "tools": [],
+      "call_budget": "each_forwarded_http_request",
+      "token_budget": "accounting_guard_not_server_cap",
+      "transport": "local_budget_gateway"
+    },
+    "sandbox": {
+      "backend": "bwrap",
+      "identity": "bwrap:573236e5328ac2ebb08f59ae3a9805b4f8d12bdef14be8af4450d5463294985f:python:17b78e0a93175e86f9ac03141924fd7a7f0c0c52e66b34bfa0de20ffef989df1",
+      "checks": {
+        "/work/main.py": true,
+        "/etc/passwd": true,
+        "/root": true,
+        "/workspace": true,
+        "network": true,
+        "no_keys": true,
+        "host_secret_hidden": true
+      },
+      "memory_limit_mb": 512,
+      "peak_ram_measured": false
+    },
+    "config": {
+      "provider": "codex",
+      "openai_model": "",
+      "codex_model": "gpt-6.1-sol",
+      "model": "",
+      "ollama_url": "http://127.0.0.1:11434",
+      "sandbox": "bwrap",
+      "image": "python:3.12-slim",
+      "sandbox_timeout": 10,
+      "memory_mb": 512,
+      "model_timeout": 120,
+      "context_tokens": 8192,
+      "output_tokens": 2048,
+      "max_calls": 150,
+      "max_tokens": 1600000,
+      "max_seconds": 1800,
+      "steps_per_task": 3,
+      "max_generations": 2,
+      "stagnation_limit": 3,
+      "max_files": 3,
+      "max_changed_lines": 200,
+      "auto_promote": false,
+      "min_new_wins": 2,
+      "repeats": 3,
+      "allow_efficiency": true,
+      "min_token_saving_percent": 15
+    }
+  },
+  "estimate": {
+    "max_calls_one_generation": 907,
+    "max_reserved_tokens": 9287680,
+    "note": "Logical request estimate; Codex retries can add requests, all bounded by max_calls. Token numbers are reservations, not a server cap."
+  },
+  "stop_reason": "generation_limit",
+  "status": "complete",
+  "usage": {
+    "n": 61,
+    "charged": 126767,
+    "actual": 126767,
+    "unknown": 0
+  },
+  "active": "agent-d1fe1545e5b6",
+  "publication_note": "Account fingerprint omitted; original campaign report retained. No credentials or raw model transport."
+}

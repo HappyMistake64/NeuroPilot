@@ -15,12 +15,26 @@ async function waitFor(fn){const end=Date.now()+15000;while(Date.now()<end){if(a
  try{
  await waitFor(async()=>{try{return(await fetch(base+'/health')).ok}catch{return false}});
  const errors=[];const vc=new VirtualConsole();vc.on('jsdomError',e=>errors.push(e.message));
- dom=await JSDOM.fromURL(base+'/rsi',{resources:'usable',runScripts:'dangerously',virtualConsole:vc,beforeParse(w){w.fetch=(u,o)=>fetch(new URL(u,base),o);w.confirm=()=>true;}});
+ dom=await JSDOM.fromURL(base+'/rsi',{resources:'usable',runScripts:'dangerously',virtualConsole:vc,beforeParse(w){w.fetch=(u,o)=>{
+ const route=new URL(u,base).pathname;
+ if(route==='/rsi/api/codex/status')return Promise.resolve({ok:true,json:async()=>({signed_in:true,model_inference_verified:false,models:[{id:'fixture-model'}]})});
+ if(route==='/rsi/api/codex/configure'){
+  assert.equal(JSON.parse(o.body).model,'fixture-model');
+  return Promise.resolve({ok:true,json:async()=>({provider:'codex',model:'fixture-model'})});
+ }
+ return fetch(new URL(u,base),o);
+ };w.confirm=()=>true;}});
  const $=id=>dom.window.document.getElementById(id);
  await waitFor(()=>$('init')?.onclick);$('init').click();
  await waitFor(()=>$('active').textContent.startsWith('agent-'));
  await waitFor(()=>$('openai_status').textContent.includes('Účet není přihlášen'));
  assert.match($('provider_status').textContent,/ollama/);
+ $('codex_models').click();
+ await waitFor(()=>$('codex_model').options.length===2);
+ assert.match($('codex_status').textContent,/spusť test spojení/);
+ $('codex_model').value='fixture-model';$('codex_save').click();
+ await waitFor(()=>$('codex_status').textContent.includes('Skutečnou odpověď ověř'));
+
  $('openai_login').click();
  await waitFor(()=>!$('openai_link').hidden);
  assert.equal(new URL($('openai_link').href).origin,'https://auth.openai.com');
@@ -48,6 +62,6 @@ async function waitFor(fn){const end=Date.now()+15000;while(Date.now()<end){if(a
  $('study').click();
  await waitFor(()=>$('runs').textContent.includes('study · blocked'));
  assert.deepEqual(errors,[]);
- process.stdout.write('PASS RSI DOM: OpenAI login URL, cancel, unauthenticated models, provider state; initialization, artifacts, A/B plan, limits, blocked environment/baseline/study, no JS errors.\n');
+ process.stdout.write('PASS RSI DOM: Codex model selection (fixture), inference distinction; OpenAI login URL, cancel, unauthenticated models, provider state; initialization, artifacts, A/B plan, limits, blocked environment/baseline/study, no JS errors.\n');
  }finally{dom?.window.close();child.kill();rmSync(temp,{recursive:true,force:true});}
 })().catch(e=>{process.stderr.write(e.stack+'\n');process.exitCode=1});

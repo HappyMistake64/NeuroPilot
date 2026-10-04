@@ -60,7 +60,7 @@ class Engine:
         try: result['benchmark']=self.benchmark.info()
         except RSIError: result['benchmark']=None
         result['implementation']='RSI 0.3.0; experimental controller'
-        result['provider']={'kind':self.cfg['provider'],'model':self.cfg['openai_model'] if self.cfg['provider']=='chatgpt' else self.cfg['model']}
+        result['provider']={'kind':self.cfg['provider'],'model':self.cfg['codex_model'] if self.cfg['provider']=='codex' else self.cfg['openai_model'] if self.cfg['provider']=='chatgpt' else self.cfg['model']}
         result['campaign_estimate']=self.campaign_estimate() if result['benchmark'] else None
         return result
     def _prepare(self,rid):
@@ -140,7 +140,7 @@ class Engine:
     def campaign_estimate(self):
         counts=self.benchmark.info()['counts'];steps=self.cfg['steps_per_task'];repeats=self.cfg['repeats']
         calls=3*counts['dev']*steps+1+2*(counts['validation']+counts['final'])*repeats*steps+2*steps
-        return {'max_calls_one_generation':calls,'max_reserved_tokens':calls*(self.cfg['context_tokens']+self.cfg['output_tokens']),'note':('Call upper bound; token numbers are reservations, not a server cap. ChatGPT may exceed them within one request.' if self.cfg['provider']=='chatgpt' else 'Upper bound; early rejection reduces work. A smaller budget may end before confirmation.')}
+        return {'max_calls_one_generation':calls,'max_reserved_tokens':calls*(self.cfg['context_tokens']+self.cfg['output_tokens']),'note':('Logical request estimate; Codex retries can add requests, all bounded by max_calls. Token numbers are reservations, not a server cap.' if self.cfg['provider'] in ('chatgpt','codex') else 'Upper bound; early rejection reduces work. A smaller budget may end before confirmation.')}
     def _comparison(self,parent,candidate,min_wins):
         result=comparison(parent,candidate,min_wins)
         result['capability_gate_passed']=result['gate_passed']

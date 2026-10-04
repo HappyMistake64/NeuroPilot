@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-04",
+  "python": "3.12.14",
+  "codex": "codex-cli 0.159.0-alpha.3",
+  "python_tests": {
+    "command": "NEUROPILOT_TEST_SANDBOXES=bwrap,docker python -m pytest tests -q",
+    "passed": 264,
+    "failed": 0,
+    "skipped": 0,
+    "new_tests": 25
+  },
+  "agent_test": "passed",
+  "planner_dom": "passed",
+  "rsi_dom": "passed; Codex model selection uses fixture; live Flask server for other flows",
+  "live_inference": "verification/codex_budgeted_connection.json",
+  "live_baseline": "verification/codex_rsi_baseline.json",
+  "general_rsi_improvement_proven": false,
+  "live_campaign": "verification/codex_rsi_campaign.json"
+}

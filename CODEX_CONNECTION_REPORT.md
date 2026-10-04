@@ -1,5 +1,7 @@
 # Skutečné připojení NeuroPilotu přes Codex app-server
 
+Historický report PR #2. Navazující provider pro RSI a aktuální výsledky: [RSI_CODEX_REPORT.md](RSI_CODEX_REPORT.md).
+
 Datum: 4. 10. 2026. Výchozí `main`: `52b5ced7aa701d06b1b3e60bc3843ddb43ba4a19`.
 Větev: `feat/codex-model-connection`. Codex CLI: `0.159.0-alpha.3`.
 

@@ -40,7 +40,7 @@ def relative_file(root, name):
     return path
 
 DEFAULTS = {
-    'provider': 'ollama', 'openai_model': '',
+    'provider': 'ollama', 'openai_model': '', 'codex_model': '',
     'model': '', 'ollama_url': 'http://127.0.0.1:11434',
     'sandbox': 'auto', 'image': 'python:3.12-slim',
     'sandbox_timeout': 10, 'memory_mb': 512,
@@ -60,11 +60,11 @@ def load_config(root):
     for key in ('sandbox_timeout','memory_mb','model_timeout','context_tokens','output_tokens','max_calls','max_tokens','max_seconds','steps_per_task','max_generations','stagnation_limit','max_files','max_changed_lines','min_new_wins','repeats'):
         if type(cfg[key]) is not int or cfg[key] <= 0: raise RSIError(f'{key} must be a positive integer')
     if cfg['sandbox'] not in {'auto','docker','podman','bwrap'}: raise RSIError('Unsupported sandbox')
-    if cfg['provider'] not in {'ollama','chatgpt'}: raise RSIError('Unsupported model provider')
+    if cfg['provider'] not in {'ollama','chatgpt','codex'}: raise RSIError('Unsupported model provider')
     for key in ('auto_promote','allow_efficiency'):
         if type(cfg[key]) is not bool: raise RSIError(f'{key} must be boolean')
     if type(cfg['min_token_saving_percent']) is not int or not 1<=cfg['min_token_saving_percent']<=99:
         raise RSIError('min_token_saving_percent must be an integer from 1 to 99')
-    for key in ('model','ollama_url','image','openai_model'):
+    for key in ('model','ollama_url','image','openai_model','codex_model'):
         if not isinstance(cfg[key],str): raise RSIError(f'{key} must be text')
     return cfg

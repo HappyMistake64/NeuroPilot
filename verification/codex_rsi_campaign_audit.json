@@ -1,0 +1,1636 @@
+{
+  "run_id": "run-02edf3b63d3c",
+  "audit_chain_valid": true,
+  "environment_implementation": "16a7d4a90f71cbc3d1406e5ec4293404c594aa2732fd2f21080252da0ada81c0",
+  "usage": {
+    "n": 61,
+    "charged": 126767,
+    "actual": 126767,
+    "unknown": 0
+  },
+  "active_unchanged": true,
+  "holdouts_consumed": 0,
+  "http_requests_recorded": 61,
+  "task_results": [
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.493752478999795,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051809738999963884,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(a, b):\n-    return a//b\n+    return -(-a // b)\n",
+      "resolved": true,
+      "seed": 0,
+      "steps": 1,
+      "task": "dev-011",
+      "usage": {
+        "actual_tokens": 1971,
+        "calls": 1,
+        "charged_tokens": 1971,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 11.826833420000185,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05159423999975843,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, m):\n-    return round(x/m)*m\n+    return (x // m) * m\n",
+      "resolved": true,
+      "seed": 10,
+      "steps": 1,
+      "task": "dev-019",
+      "usage": {
+        "actual_tokens": 1984,
+        "calls": 1,
+        "charged_tokens": 1984,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 9.395957537999948,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05180958600021768,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return 1 if x>=0 else -1\n+    return (x > 0) - (x < 0)\n",
+      "resolved": true,
+      "seed": 20,
+      "steps": 1,
+      "task": "dev-017",
+      "usage": {
+        "actual_tokens": 1991,
+        "calls": 1,
+        "charged_tokens": 1991,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.4257169800002885,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05195636199960063,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,7 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [sum(xs[:i]) for i in range(len(xs))]\n+    result = []\n+    total = 0\n+    for x in xs:\n+        total += x\n+        result.append(total)\n+    return result\n",
+      "resolved": true,
+      "seed": 30,
+      "steps": 1,
+      "task": "dev-015",
+      "usage": {
+        "actual_tokens": 2013,
+        "calls": 1,
+        "charged_tokens": 2013,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.036492624999937,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051588609000191354,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return x\n+    return abs(x)\n",
+      "resolved": true,
+      "seed": 40,
+      "steps": 1,
+      "task": "dev-001",
+      "usage": {
+        "actual_tokens": 1942,
+        "calls": 1,
+        "charged_tokens": 1942,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.542635108000013,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.07801180299975385,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(n):\n-    return n*n\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 50,
+      "steps": 1,
+      "task": "dev-018",
+      "usage": {
+        "actual_tokens": 1964,
+        "calls": 1,
+        "charged_tokens": 1964,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.556141006999951,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051689127999907214,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,4 @@\n-import math\n-import re\n-\n def solve(part, total):\n-    return part/total\n+    if total == 0:\n+        return None\n+    return part / total * 100\n",
+      "resolved": true,
+      "seed": 60,
+      "steps": 1,
+      "task": "dev-012",
+      "usage": {
+        "actual_tokens": 1992,
+        "calls": 1,
+        "charged_tokens": 1992,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.391964201000064,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051739130999976624,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(n):\n-    return sum(range(n))\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 70,
+      "steps": 1,
+      "task": "dev-003",
+      "usage": {
+        "actual_tokens": 1977,
+        "calls": 1,
+        "charged_tokens": 1977,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.358192091000092,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05186173699985375,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,7 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return sorted(xs)[len(xs)//2]\n+    values = sorted(xs)\n+    n = len(values)\n+    mid = n // 2\n+    if n % 2:\n+        return values[mid]\n+    return (values[mid - 1] + values[mid]) / 2\n",
+      "resolved": true,
+      "seed": 80,
+      "steps": 1,
+      "task": "dev-004",
+      "usage": {
+        "actual_tokens": 2027,
+        "calls": 1,
+        "charged_tokens": 2027,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.846058476000053,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05194088700000066,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs, ys):\n-    return sum(xs)+sum(ys)\n+    return sum(x * y for x, y in zip(xs, ys))\n",
+      "resolved": true,
+      "seed": 90,
+      "steps": 1,
+      "task": "dev-010",
+      "usage": {
+        "actual_tokens": 1982,
+        "calls": 1,
+        "charged_tokens": 1982,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 9.289011216999825,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05188981000037529,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [x for x in xs if x%2]\n+    return [x for x in xs if type(x) is int and x % 2 == 0]\n",
+      "resolved": true,
+      "seed": 100,
+      "steps": 1,
+      "task": "dev-006",
+      "usage": {
+        "actual_tokens": 2045,
+        "calls": 1,
+        "charged_tokens": 2045,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.758533962999991,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05174947199975577,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, n):\n-    return x*n\n+    return x ** n\n",
+      "resolved": true,
+      "seed": 110,
+      "steps": 1,
+      "task": "dev-008",
+      "usage": {
+        "actual_tokens": 1979,
+        "calls": 1,
+        "charged_tokens": 1979,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.4253391719998945,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05173284900001818,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(n):\n-    return sum(range(1,n+1))\n+    return math.factorial(n)\n",
+      "resolved": true,
+      "seed": 120,
+      "steps": 1,
+      "task": "dev-005",
+      "usage": {
+        "actual_tokens": 1976,
+        "calls": 1,
+        "charged_tokens": 1976,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.891867614000148,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.0519945470005041,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(a, b):\n-    return a/b\n+    return None if b == 0 else a / b\n",
+      "resolved": true,
+      "seed": 130,
+      "steps": 1,
+      "task": "dev-020",
+      "usage": {
+        "actual_tokens": 1978,
+        "calls": 1,
+        "charged_tokens": 1978,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.640494425000725,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.06343059700066078,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(a, b):\n-    return max(a,b)\n+    return math.gcd(a, b)\n",
+      "resolved": true,
+      "seed": 140,
+      "steps": 1,
+      "task": "dev-007",
+      "usage": {
+        "actual_tokens": 1989,
+        "calls": 1,
+        "charged_tokens": 1989,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 8.239959774999988,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05173797899988131,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,4 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [max(xs),min(xs)]\n+    if not xs:\n+        return []\n+    return [min(xs), max(xs)]\n",
+      "resolved": true,
+      "seed": 150,
+      "steps": 1,
+      "task": "dev-016",
+      "usage": {
+        "actual_tokens": 1997,
+        "calls": 1,
+        "charged_tokens": 1997,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.089568809000411,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.07855833400026313,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return sum(x>=0 for x in xs)\n+    return sum(x > 0 for x in xs)\n",
+      "resolved": true,
+      "seed": 160,
+      "steps": 1,
+      "task": "dev-009",
+      "usage": {
+        "actual_tokens": 1979,
+        "calls": 1,
+        "charged_tokens": 1979,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.53617048399974,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05254290399989259,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, lo, hi):\n-    return min(x, hi)\n+    return max(lo, min(x, hi))\n",
+      "resolved": true,
+      "seed": 170,
+      "steps": 1,
+      "task": "dev-002",
+      "usage": {
+        "actual_tokens": 1978,
+        "calls": 1,
+        "charged_tokens": 1978,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.518009335999523,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05191026100055751,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(a, b):\n-    return abs(a[0]-b[0])+abs(a[1]-b[1])\n+    return math.hypot(a[0] - b[0], a[1] - b[1])\n",
+      "resolved": true,
+      "seed": 180,
+      "steps": 1,
+      "task": "dev-014",
+      "usage": {
+        "actual_tokens": 2023,
+        "calls": 1,
+        "charged_tokens": 2023,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.740656613999818,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05163695299961546,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return x\n+    return x % 360\n",
+      "resolved": true,
+      "seed": 190,
+      "steps": 1,
+      "task": "dev-013",
+      "usage": {
+        "actual_tokens": 1950,
+        "calls": 1,
+        "charged_tokens": 1950,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.683332614000392,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05156645699935325,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(a, b):\n-    return a//b\n+    return -(-a // b)\n",
+      "resolved": true,
+      "seed": 0,
+      "steps": 1,
+      "task": "dev-011",
+      "usage": {
+        "actual_tokens": 1974,
+        "calls": 1,
+        "charged_tokens": 1974,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.948327926000275,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.055004085000291525,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(a, b):\n-    return a//b\n+    return -(-a // b)\n",
+      "resolved": true,
+      "seed": 0,
+      "steps": 1,
+      "task": "dev-011",
+      "usage": {
+        "actual_tokens": 2023,
+        "calls": 1,
+        "charged_tokens": 2023,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 10.381316840999716,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05167300700031774,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x, m):\n-    return round(x/m)*m\n+    return (x // m) * m\n",
+      "resolved": true,
+      "seed": 10,
+      "steps": 1,
+      "task": "dev-019",
+      "usage": {
+        "actual_tokens": 2033,
+        "calls": 1,
+        "charged_tokens": 2033,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.895742214000165,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05186060500000167,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, m):\n-    return round(x/m)*m\n+    return (x // m) * m\n",
+      "resolved": true,
+      "seed": 10,
+      "steps": 1,
+      "task": "dev-019",
+      "usage": {
+        "actual_tokens": 1983,
+        "calls": 1,
+        "charged_tokens": 1983,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.438186372999553,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.053790383999512414,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return 1 if x>=0 else -1\n+    return (x > 0) - (x < 0)\n",
+      "resolved": true,
+      "seed": 20,
+      "steps": 1,
+      "task": "dev-017",
+      "usage": {
+        "actual_tokens": 1990,
+        "calls": 1,
+        "charged_tokens": 1990,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.11321174800014,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05197219699948619,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x):\n-    return 1 if x>=0 else -1\n+    return 1 if x > 0 else -1 if x < 0 else 0\n",
+      "resolved": true,
+      "seed": 20,
+      "steps": 1,
+      "task": "dev-017",
+      "usage": {
+        "actual_tokens": 2046,
+        "calls": 1,
+        "charged_tokens": 2046,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.527506769999491,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.10414236599990545,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(xs):\n-    return [sum(xs[:i]) for i in range(len(xs))]\n+    return [sum(xs[:i + 1]) for i in range(len(xs))]\n",
+      "resolved": true,
+      "seed": 30,
+      "steps": 1,
+      "task": "dev-015",
+      "usage": {
+        "actual_tokens": 2042,
+        "calls": 1,
+        "charged_tokens": 2042,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.341100569000446,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05176022300020122,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,7 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [sum(xs[:i]) for i in range(len(xs))]\n+    results = []\n+    total = 0\n+    for x in xs:\n+        total += x\n+        results.append(total)\n+    return results\n",
+      "resolved": true,
+      "seed": 30,
+      "steps": 1,
+      "task": "dev-015",
+      "usage": {
+        "actual_tokens": 2007,
+        "calls": 1,
+        "charged_tokens": 2007,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 5.848503535999953,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05199725900001795,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return x\n+    return abs(x)\n",
+      "resolved": true,
+      "seed": 40,
+      "steps": 1,
+      "task": "dev-001",
+      "usage": {
+        "actual_tokens": 1942,
+        "calls": 1,
+        "charged_tokens": 1942,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.2742329839993545,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051590125000075204,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x):\n-    return x\n+    return abs(x)\n",
+      "resolved": true,
+      "seed": 40,
+      "steps": 1,
+      "task": "dev-001",
+      "usage": {
+        "actual_tokens": 1993,
+        "calls": 1,
+        "charged_tokens": 1993,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.692081621999932,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.053500086999520136,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(n):\n-    return n*n\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 50,
+      "steps": 1,
+      "task": "dev-018",
+      "usage": {
+        "actual_tokens": 2017,
+        "calls": 1,
+        "charged_tokens": 2017,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.045466784000382,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051869805999558594,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(n):\n-    return n*n\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 50,
+      "steps": 1,
+      "task": "dev-018",
+      "usage": {
+        "actual_tokens": 1969,
+        "calls": 1,
+        "charged_tokens": 1969,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.35519992799982,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051927927999713575,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,4 @@\n-import math\n-import re\n-\n def solve(part, total):\n-    return part/total\n+    if total == 0:\n+        return None\n+    return part / total * 100\n",
+      "resolved": true,
+      "seed": 60,
+      "steps": 1,
+      "task": "dev-012",
+      "usage": {
+        "actual_tokens": 1992,
+        "calls": 1,
+        "charged_tokens": 1992,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 8.225585551000222,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05233393199978309,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,6 @@\n import re\n \n def solve(part, total):\n-    return part/total\n+    if total == 0:\n+        return None\n+    return part / total * 100\n",
+      "resolved": true,
+      "seed": 60,
+      "steps": 1,
+      "task": "dev-012",
+      "usage": {
+        "actual_tokens": 2041,
+        "calls": 1,
+        "charged_tokens": 2041,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.5658983510002145,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05207348899966746,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(n):\n-    return sum(range(n))\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 70,
+      "steps": 1,
+      "task": "dev-003",
+      "usage": {
+        "actual_tokens": 2021,
+        "calls": 1,
+        "charged_tokens": 2021,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.600079554000331,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.07964054700005363,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(n):\n-    return sum(range(n))\n+    return n * (n + 1) // 2\n",
+      "resolved": true,
+      "seed": 70,
+      "steps": 1,
+      "task": "dev-003",
+      "usage": {
+        "actual_tokens": 1977,
+        "calls": 1,
+        "charged_tokens": 1977,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 7.422196372999679,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05165576800027338,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,7 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return sorted(xs)[len(xs)//2]\n+    values = sorted(xs)\n+    n = len(values)\n+    middle = n // 2\n+    if n % 2:\n+        return values[middle]\n+    return (values[middle - 1] + values[middle]) / 2\n",
+      "resolved": true,
+      "seed": 80,
+      "steps": 1,
+      "task": "dev-004",
+      "usage": {
+        "actual_tokens": 2027,
+        "calls": 1,
+        "charged_tokens": 2027,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.85311788800027,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051694337999833806,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,9 @@\n import re\n \n def solve(xs):\n-    return sorted(xs)[len(xs)//2]\n+    values = sorted(xs)\n+    n = len(values)\n+    mid = n // 2\n+    if n % 2:\n+        return values[mid]\n+    return (values[mid - 1] + values[mid]) / 2\n",
+      "resolved": true,
+      "seed": 80,
+      "steps": 1,
+      "task": "dev-004",
+      "usage": {
+        "actual_tokens": 2076,
+        "calls": 1,
+        "charged_tokens": 2076,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 10.502653241999724,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05240194399993925,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(xs, ys):\n-    return sum(xs)+sum(ys)\n+    return sum(x * y for x, y in zip(xs, ys))\n",
+      "resolved": true,
+      "seed": 90,
+      "steps": 1,
+      "task": "dev-010",
+      "usage": {
+        "actual_tokens": 2030,
+        "calls": 1,
+        "charged_tokens": 2030,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.39503528700061,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051725670999985596,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs, ys):\n-    return sum(xs)+sum(ys)\n+    return sum(x * y for x, y in zip(xs, ys))\n",
+      "resolved": true,
+      "seed": 90,
+      "steps": 1,
+      "task": "dev-010",
+      "usage": {
+        "actual_tokens": 1982,
+        "calls": 1,
+        "charged_tokens": 1982,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 8.360421624000082,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051729718999922625,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [x for x in xs if x%2]\n+    return [x for x in xs if type(x) is int and x % 2 == 0]\n",
+      "resolved": true,
+      "seed": 100,
+      "steps": 1,
+      "task": "dev-006",
+      "usage": {
+        "actual_tokens": 2028,
+        "calls": 1,
+        "charged_tokens": 2028,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 12.034252966000167,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051826801000061096,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(xs):\n-    return [x for x in xs if x%2]\n+    return [x for x in xs if type(x) is int and x % 2 == 0]\n",
+      "resolved": true,
+      "seed": 100,
+      "steps": 1,
+      "task": "dev-006",
+      "usage": {
+        "actual_tokens": 2098,
+        "calls": 1,
+        "charged_tokens": 2098,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.406372871999338,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05155151199960528,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x, n):\n-    return x*n\n+    return x**n\n",
+      "resolved": true,
+      "seed": 110,
+      "steps": 1,
+      "task": "dev-008",
+      "usage": {
+        "actual_tokens": 2029,
+        "calls": 1,
+        "charged_tokens": 2029,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.961638667000443,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.052013340000485186,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, n):\n-    return x*n\n+    return x ** n\n",
+      "resolved": true,
+      "seed": 110,
+      "steps": 1,
+      "task": "dev-008",
+      "usage": {
+        "actual_tokens": 1977,
+        "calls": 1,
+        "charged_tokens": 1977,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.496905916999822,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05208121199939342,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(n):\n-    return sum(range(1,n+1))\n+    return math.factorial(n)\n",
+      "resolved": true,
+      "seed": 120,
+      "steps": 1,
+      "task": "dev-005",
+      "usage": {
+        "actual_tokens": 1974,
+        "calls": 1,
+        "charged_tokens": 1974,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.965942580999581,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05183625900008337,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(n):\n-    return sum(range(1,n+1))\n+    return math.factorial(n)\n",
+      "resolved": true,
+      "seed": 120,
+      "steps": 1,
+      "task": "dev-005",
+      "usage": {
+        "actual_tokens": 2023,
+        "calls": 1,
+        "charged_tokens": 2023,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.143832144000044,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05166223299966077,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(a, b):\n-    return a/b\n+    return None if b == 0 else a / b\n",
+      "resolved": true,
+      "seed": 130,
+      "steps": 1,
+      "task": "dev-020",
+      "usage": {
+        "actual_tokens": 2031,
+        "calls": 1,
+        "charged_tokens": 2031,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.360880195000391,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051904613000260724,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(a, b):\n-    return a/b\n+    return None if b == 0 else a / b\n",
+      "resolved": true,
+      "seed": 130,
+      "steps": 1,
+      "task": "dev-020",
+      "usage": {
+        "actual_tokens": 1979,
+        "calls": 1,
+        "charged_tokens": 1979,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.959180161000404,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05166644700057077,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(a, b):\n-    return max(a,b)\n+    return math.gcd(a, b)\n",
+      "resolved": true,
+      "seed": 140,
+      "steps": 1,
+      "task": "dev-007",
+      "usage": {
+        "actual_tokens": 1987,
+        "calls": 1,
+        "charged_tokens": 1987,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 6.9449880660004055,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.08013603100062028,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(a, b):\n-    return max(a,b)\n+    return math.gcd(a, b)\n",
+      "resolved": true,
+      "seed": 140,
+      "steps": 1,
+      "task": "dev-007",
+      "usage": {
+        "actual_tokens": 2036,
+        "calls": 1,
+        "charged_tokens": 2036,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 11.965019420000317,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05164194799999677,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(xs):\n-    return [max(xs),min(xs)]\n+    return [min(xs), max(xs)] if xs else []\n",
+      "resolved": true,
+      "seed": 150,
+      "steps": 1,
+      "task": "dev-016",
+      "usage": {
+        "actual_tokens": 2034,
+        "calls": 1,
+        "charged_tokens": 2034,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.881344835000164,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05227567600013572,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,4 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return [max(xs),min(xs)]\n+    if not xs:\n+        return []\n+    return [min(xs), max(xs)]\n",
+      "resolved": true,
+      "seed": 150,
+      "steps": 1,
+      "task": "dev-016",
+      "usage": {
+        "actual_tokens": 1992,
+        "calls": 1,
+        "charged_tokens": 1992,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.8706685810002455,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.052007037999828754,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(xs):\n-    return sum(x>=0 for x in xs)\n+    return sum(x > 0 for x in xs)\n",
+      "resolved": true,
+      "seed": 160,
+      "steps": 1,
+      "task": "dev-009",
+      "usage": {
+        "actual_tokens": 1978,
+        "calls": 1,
+        "charged_tokens": 1978,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.54010270299932,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05363752600078442,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(xs):\n-    return sum(x>=0 for x in xs)\n+    return sum(x > 0 for x in xs)\n",
+      "resolved": true,
+      "seed": 160,
+      "steps": 1,
+      "task": "dev-009",
+      "usage": {
+        "actual_tokens": 2029,
+        "calls": 1,
+        "charged_tokens": 2029,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 7.388628499999868,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05207792900000641,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x, lo, hi):\n-    return min(x, hi)\n+    return max(lo, min(x, hi))\n",
+      "resolved": true,
+      "seed": 170,
+      "steps": 1,
+      "task": "dev-002",
+      "usage": {
+        "actual_tokens": 2023,
+        "calls": 1,
+        "charged_tokens": 2023,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.457196907999787,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05177345199990668,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x, lo, hi):\n-    return min(x, hi)\n+    return max(lo, min(x, hi))\n",
+      "resolved": true,
+      "seed": 170,
+      "steps": 1,
+      "task": "dev-002",
+      "usage": {
+        "actual_tokens": 1978,
+        "calls": 1,
+        "charged_tokens": 1978,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.915108920000421,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05199869099942589,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,5 @@\n import math\n-import re\n+\n \n def solve(a, b):\n-    return abs(a[0]-b[0])+abs(a[1]-b[1])\n+    return math.hypot(a[0] - b[0], a[1] - b[1])\n",
+      "resolved": true,
+      "seed": 180,
+      "steps": 1,
+      "task": "dev-014",
+      "usage": {
+        "actual_tokens": 2023,
+        "calls": 1,
+        "charged_tokens": 2023,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 8.347009215000071,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051921223999670474,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(a, b):\n-    return abs(a[0]-b[0])+abs(a[1]-b[1])\n+    return math.hypot(a[0] - b[0], a[1] - b[1])\n",
+      "resolved": true,
+      "seed": 180,
+      "steps": 1,
+      "task": "dev-014",
+      "usage": {
+        "actual_tokens": 2070,
+        "calls": 1,
+        "charged_tokens": 2070,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-047e036cce07",
+      "elapsed": 9.600231747999715,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.051536484000280325,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -2,4 +2,4 @@\n import re\n \n def solve(x):\n-    return x\n+    return x % 360\n",
+      "resolved": true,
+      "seed": 190,
+      "steps": 1,
+      "task": "dev-013",
+      "usage": {
+        "actual_tokens": 1999,
+        "calls": 1,
+        "charged_tokens": 1999,
+        "unknown_calls": 0
+      }
+    },
+    {
+      "artifact": "agent-d1fe1545e5b6",
+      "elapsed": 6.709004461999939,
+      "errors": [],
+      "evaluation": {
+        "backend": "bwrap",
+        "checks_passed": 3,
+        "checks_total": 3,
+        "elapsed": 0.05158360299992637,
+        "passed": true,
+        "peak_ram_bytes": null,
+        "returncode": 0,
+        "timed_out": false
+      },
+      "finished": true,
+      "patch": "--- solution.py\n+++ solution.py\n@@ -1,5 +1,2 @@\n-import math\n-import re\n-\n def solve(x):\n-    return x\n+    return x % 360\n",
+      "resolved": true,
+      "seed": 190,
+      "steps": 1,
+      "task": "dev-013",
+      "usage": {
+        "actual_tokens": 1943,
+        "calls": 1,
+        "charged_tokens": 1943,
+        "unknown_calls": 0
+      }
+    }
+  ]
+}

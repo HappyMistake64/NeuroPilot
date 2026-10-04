@@ -1,5 +1,7 @@
 # Implementace RSI — stav dodávky 0.3.0
 
+Aktuální cloudové ověření je v [RSI_CODEX_REPORT.md](RSI_CODEX_REPORT.md). Níže uvedená původní tabulka zachycuje stav před připojením modelu; chronologická ověření následují na konci.
+
 NeuroPilot 3.4.0 obsahuje nové komponenty všech sedmi etap. Dokončení kódu a průchod testy neznamenají prokázané sebezdokonalení.
 
 | Etapa | Dodaná implementace | Ověření v této relaci |
@@ -76,3 +78,22 @@ relaci. Po jejím obnovení se úspěšně ověřila až odpověď aplikace. Př
 provider tím vlastní registraci nezískal. App-server má jinou jednotku rozpočtu
 (tah, nikoli spolehlivě jeden modelový požadavek), proto není zapojen do RSI
 kampaní. Skutečná modelová baseline a A/B experiment zůstávají neprovedené.
+
+## Dokončená integrace Codexu do RSI — 4. 10. 2026
+
+Provider `codex` nyní používá bránu s rezervací každého skutečného HTTP požadavku
+před odesláním, včetně retry. Model lze vybrat na `/rsi`; CLI device login funguje
+z telefonu. Přihlašovací soubory se nečtou ani neimportují do NeuroPilotu.
+
+Skutečný `provider-check`: 1 požadavek, 1 548 tokenů. Baseline přes Bubblewrap:
+**10/10**, 10 požadavků, 19 866 tokenů. Jedna celá generace vytvořila modelový
+návrh a provedla párované měření: rodič i kandidát **20/20**, kandidát však
+spotřeboval o **2,50 % více tokenů**. Byl zamítnut na vývojové bráně; aktivní
+verze se nezměnila a holdout zůstal čerstvý. Kampaň: 61 požadavků, 126 767 tokenů,
+stav `complete`, obecné zlepšení RSI **neprokázáno**.
+
+264 Python testů včetně živých sandboxů, test agenta i oba DOM testy prošly.
+Výchozí místní konfigurace má vybraný model a `doctor: ready=true`.
+Reprodukce, omezení a původní výsledky: `RSI_CODEX_REPORT.md` a
+`verification/codex_rsi_*`. Výzkumné podmínky více potvrzených generací a A/B
+studie zůstávají otevřené; nepovažují se za splněné pouhou existencí kódu.

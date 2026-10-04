@@ -3,15 +3,21 @@
 </style></head><body><main><header><div><span class="badge">NEUROPILOT · EXPERIMENTÁLNÍ RSI 0.3</span><h1>Laboratoř vlastních zlepšení</h1></div><a href="/">← Plánovač</a></header>
 <p>Vývojové úlohy → vlastní změna → nezávislé hodnocení → ověřená verze. Každý běh má limity volání a času.</p>
 <div id="message" role="status" aria-live="polite"></div>
-<section><h2>OpenAI přes předplatné ChatGPT</h2>
+<section><h2>ChatGPT přes Codex v cloudu</h2>
+<p>Pokud je Codex na této VM přihlášený přes ChatGPT, načti jeho modely a vyber připojení pro RSI. Zadání a upravovaný kód se odesílají OpenAI. Samotné přihlášení ještě nepotvrzuje odpověď modelu.</p>
+<p>Pro nové přihlášení spusť v terminálu <code>python -m rsi codex-login</code>. Odkaz a jednorázový kód z terminálu můžeš potvrdit na telefonu; pak zde znovu načti modely.</p>
+<button id="codex_models">Načíst modely Codexu</button><label for="codex_model">Model Codexu</label> <select id="codex_model"><option value="">Nejdřív načti modely</option></select><button id="codex_save">Použít Codex pro RSI</button>
+<p id="codex_status" role="status">Připojení zatím neověřeno.</p>
+<p>Každý modelový požadavek včetně opakování se započítá před odesláním. Tokenový limit je účetní a jeden požadavek jej může překročit. Kód úloh spouští izolovaný sandbox NeuroPilotu.</p></section>
+<section><h2>Připojení a přímé přihlášení ChatGPT</h2>
 <p>Přihlas se účtem ChatGPT a povol NeuroPilotu využití svého předplatného. Dostupnost a limity určuje tvůj účet. Zadání a upravovaný kód se odesílají OpenAI.</p>
 <p id="provider_status">Načítám připojení…</p><p id="openai_status" role="status"></p>
 <label for="openai_account">Účet</label> <select id="openai_account"><option value="">Nový účet / workspace</option></select>
 <button id="openai_login">Continue with ChatGPT</button><button id="openai_select" class="secondary">Použít uložený účet</button><button id="openai_logout" class="secondary">Odhlásit aktivní účet</button>
 <p><a id="openai_link" hidden target="_blank" rel="noopener noreferrer">Dokončit přihlášení v ChatGPT</a></p><button id="openai_cancel" class="secondary" hidden>Zrušit čekající přihlášení</button>
-<p>Přihlášení dokonči v prohlížeči na stejném počítači, kde běží NeuroPilot. Pro cloudovou VM použij bezpečný import registrace podle OPENAI_README.md. Přihlášení samotného Codexu NeuroPilot nepřipojuje.</p>
+<p>Přihlášení dokonči v prohlížeči na stejném počítači, kde běží NeuroPilot. Pro cloudovou VM použij bezpečný import registrace podle OPENAI_README.md. Pro připojení přes Codex použij výběr modelu výše.</p>
 <button id="openai_models" class="secondary">Načíst dostupné modely</button><label for="openai_model">Model</label> <select id="openai_model"><option value="">Nejdřív načti modely</option></select>
-<button id="openai_save">Použít pro RSI</button><button id="provider_check" class="secondary">Otestovat spojení · 1 dotaz</button><button id="use_ollama" class="secondary">Použít lokální Ollamu</button>
+<button id="openai_save">Použít pro RSI</button><button id="provider_check" class="secondary">Otestovat spojení</button><button id="use_ollama" class="secondary">Použít lokální Ollamu</button>
 <p>Test spojení ověří skutečnou odpověď modelu. Experimenty dále vyžadují funkční izolaci kódu. Tokenový rozpočet u ChatGPT hlídáme účetně; jeden dotaz jej může překročit. Limity předplatného a kreditů nastav v <a href="https://chatgpt.com/#settings" target="_blank" rel="noopener noreferrer">ChatGPT Settings → Usage</a>. API klíč se nepoužívá.</p></section>
 <section><h2>Ovládání</h2><p>Aktivní agent: <span id="active">—</span></p><button id="init">Připravit laboratoř</button><button id="doctor" class="secondary">Ověřit prostředí</button><button id="baseline">Změřit 10 úloh</button><button id="campaign">Spustit 1 generaci</button><button id="rollback" class="danger">Vrátit předchozí verzi</button><p>Model a limity nastav v souboru rsi_state/config.json. Bez dostupného modelu a funkční izolace se experiment zastaví. Po spotřebování závěrečné sady je potřeba nová sada úloh.</p><pre id="job">Žádný běh.</pre></section>
 <section><h2>Kontrolní A/B experiment</h2><p>Dvě oddělené větve: změny navrhuje stále původní agent, nebo přijatá nová verze. Shodné limity pro každou větev, dvě generace a oddělený závěrečný audit. Aktivní agent plánovače se tím nemění.</p><button id="study_prepare" class="secondary">Připravit A/B plán</button><button id="study">Spustit A/B experiment</button><pre id="study_plan">Nejdřív připrav plán. Výchozí rozpočet nemusí stačit na celé měření.</pre><p id="limits"></p></section>
