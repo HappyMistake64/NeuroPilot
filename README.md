@@ -2,6 +2,8 @@
 
 **Nové připojení OpenAI:** na `/rsi` klikni na **Continue with ChatGPT**, dokonči přihlášení, načti a vyber model. Podrobný postup a limity jsou v `OPENAI_README.md`. API klíč ani Codex CLI nejsou potřeba.
 
+**Cloudový Codex / vzdálená VM:** přihlášení Codexu není přihlášení NeuroPilotu. Pro vlastní OAuth registraci aplikace použij postup `openai-import` v `OPENAI_README.md`. Aktuální ověření a překážky jsou v `CLOUD_CONNECTION_REPORT.md`.
+
 **Výzkum a opravy 3.3.1:** otevři `research/report.html` nebo `research/RESEARCH_REPORT.md`. Obsahují měření, simulace a reprodukční příkazy.
 
 **Nové:** laboratoř RSI je na `/rsi`. Postup nastavení, skutečný stav ověření a limity jsou v `RSI_README.md` a `RSI_STATUS.md`. Nové A/B experimenty a efektivnostní bránu popisuje `RSI_AB.md`. Původní audit verze 3.1.0 je zachován jako historický dokument.

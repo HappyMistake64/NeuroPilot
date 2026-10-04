@@ -13,6 +13,8 @@ def main(argv=None):
     sub=parser.add_subparsers(dest='command',required=True)
     for name in ('init','doctor','status','reference-check','rollback','recover','provider-check','openai-status','openai-models','openai-logout'): sub.add_parser(name)
     p=sub.add_parser('openai-login');p.add_argument('--account');p.add_argument('--no-browser',action='store_true')
+    p=sub.add_parser('openai-import',help='Import a protected NeuroPilot registration on a remote VM')
+    p.add_argument('--file',required=True);p.add_argument('--account',required=True)
     p=sub.add_parser('config');p.add_argument('--set',action='append',default=[])
     p=sub.add_parser('baseline');p.add_argument('--limit',type=int)
     p=sub.add_parser('campaign');p.add_argument('--generations',type=int,default=1)
@@ -49,6 +51,7 @@ def main(argv=None):
                 from .openai_auth import Accounts, begin_login
                 accounts=Accounts()
                 if args.command=='openai-status': result=accounts.status()
+                elif args.command=='openai-import': result=accounts.import_registration(args.file,args.account,(args.state,))
                 elif args.command=='openai-logout': result=accounts.logout()
                 elif args.command=='openai-models':
                     from .openai_provider import ChatGPT

@@ -258,3 +258,113 @@ def test_web_account_endpoints_no_secret_or_cross_origin(accounts,monkeypatch,tm
     assert client.post('/rsi/api/openai/cancel',json={}).status_code==200
     assert client.get('/rsi/api/openai/status').json['login']['status']=='cancelled'
     assert load_config(tmp_path/'state')['provider']=='ollama'
+
+
+def import_source(tmp_path,monkeypatch,signing_key):
+    source=auth.Accounts(tmp_path/'laptop')
+    connect(source,monkeypatch,signing_key)
+    return source
+
+
+def test_import_preserves_vm_host_and_validates_identity(accounts,tmp_path,monkeypatch,signing_key):
+    source=import_source(tmp_path,monkeypatch,signing_key)
+    accounts.status()
+    host=json.loads(accounts.path.read_text())['host_id']
+    assert host!=json.loads(source.path.read_text())['host_id']
+    result=accounts.import_registration(source.path,'oaiapp_test')
+    assert result=={'imported':True,'inference_verified':False,'host_id_preserved':True}
+    assert 'secret-' not in json.dumps(result)
+    assert json.loads(accounts.path.read_text())['host_id']==host
+    assert accounts.credentials()[0]=='secret-access'
+    assert accounts.path.stat().st_mode&0o777==0o600
+    assert accounts.root.stat().st_mode&0o777==0o700
+
+
+@pytest.mark.parametrize('change',[
+    {'subject':'another-user'}, {'issuer':'https://evil.example'},
+    {'scopes':['openid']}, {'expires_at':float('nan')},
+    {'refresh_token':''}, {'client_id':'oaiapp_other'},
+    {'id_token':'secret-malformed-token'},
+])
+def test_import_rejects_invalid_record_without_replacing_active(accounts,tmp_path,monkeypatch,signing_key,change):
+    connect(accounts,monkeypatch,signing_key)
+    before=accounts.path.read_bytes()
+    source=import_source(tmp_path,monkeypatch,signing_key)
+    data=json.loads(source.path.read_text());data['accounts']['oaiapp_test'].update(change)
+    source.path.write_text(json.dumps(data))
+    with pytest.raises(RSIError) as error:
+        accounts.import_registration(source.path,'oaiapp_test')
+    assert 'secret-' not in str(error.value)
+    assert accounts.path.read_bytes()==before
+
+
+@pytest.mark.parametrize('kind',['permissions','symlink','fifo','malformed','codex','oversize'])
+def test_import_rejects_unsafe_files(accounts,tmp_path,kind):
+    source=tmp_path/'incoming.json'
+    source.write_text('{}');source.chmod(0o600)
+    if kind=='permissions': source.chmod(0o644)
+    elif kind=='symlink':
+        link=tmp_path/'link.json';link.symlink_to(source);source=link
+    elif kind=='fifo': source.unlink();os.mkfifo(source,0o600)
+    elif kind=='malformed': source.write_text('{secret-do-not-log')
+    elif kind=='codex': source.write_text(json.dumps({'tokens':{'access_token':'secret-codex'}}))
+    elif kind=='oversize': source.write_text('x'*1_000_001)
+    with pytest.raises(RSIError) as error: accounts.import_registration(source,'oaiapp_test')
+    assert 'secret-' not in str(error.value)
+    assert accounts.status()['active'] is None
+
+
+def test_import_rejects_expired_identity(accounts,tmp_path,monkeypatch,signing_key):
+    source=import_source(tmp_path,monkeypatch,signing_key)
+    data=json.loads(source.path.read_text())
+    data['accounts']['oaiapp_test']['id_token']=signed(signing_key,'n',exp=1)
+    source._save(data)
+    with pytest.raises(RSIError): accounts.import_registration(source.path,'oaiapp_test')
+    assert accounts.status()['active'] is None
+
+
+def test_import_rejects_project_or_state_paths(accounts,tmp_path):
+    project=auth.Path(auth.__file__).resolve().parents[1]
+    with pytest.raises(RSIError,match='outside'):
+        accounts.import_registration(project/'accounts.json','oaiapp_test')
+    with pytest.raises(RSIError,match='outside'):
+        accounts.import_registration(tmp_path/'state'/'accounts.json','oaiapp_test',(tmp_path/'state',))
+    unsafe=auth.Accounts(tmp_path/'state'/'auth')
+    with pytest.raises(RSIError,match='outside'):
+        unsafe.import_registration(tmp_path/'incoming.json','oaiapp_test',(tmp_path/'state',))
+    assert not unsafe.root.exists()
+
+
+def test_import_cli_safe_result(accounts,tmp_path,monkeypatch,signing_key,capsys):
+    from rsi.cli import main
+    source=import_source(tmp_path,monkeypatch,signing_key)
+    code=main(['--state',str(tmp_path/'state'),'openai-import','--file',str(source.path),'--account','oaiapp_test'])
+    result=capsys.readouterr().out
+    assert code==0 and json.loads(result)['inference_verified'] is False
+    assert 'secret-' not in result and 'id_token' not in result
+
+
+def test_openai_transport_uses_environment_proxy_and_rejects_redirects(monkeypatch):
+    import threading
+    from http.server import BaseHTTPRequestHandler, HTTPServer
+    seen=[]
+    class Proxy(BaseHTTPRequestHandler):
+        def log_message(self,*args): pass
+        def do_GET(self):
+            seen.append(self.path)
+            self.send_response(302)
+            self.send_header('Location','https://other.invalid/steal')
+            self.end_headers()
+    server=HTTPServer(('127.0.0.1',0),Proxy)
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    monkeypatch.setenv('http_proxy',f'http://127.0.0.1:{server.server_port}')
+    monkeypatch.setenv('https_proxy',f'http://127.0.0.1:{server.server_port}')
+    monkeypatch.setenv('no_proxy','')
+    try:
+        client=auth.opener()
+        proxies=[h.proxies for h in client.handlers if isinstance(h,auth.ProxyHandler)]
+        assert proxies[0]['https']==os.environ['https_proxy']
+        with pytest.raises(auth.ServiceError,match='redirect_rejected'):
+            client.open('http://unresolvable.invalid/proxy-check',timeout=2)
+        assert seen==['http://unresolvable.invalid/proxy-check']
+    finally: server.shutdown();server.server_close();thread.join(timeout=2)
