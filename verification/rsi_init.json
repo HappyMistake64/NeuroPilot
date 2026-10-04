@@ -1,0 +1,30 @@
+{
+  "active": "agent-ffeade8dc78c",
+  "artifacts": [
+    {
+      "id": "agent-ffeade8dc78c",
+      "parent": null,
+      "sha": "b829c36360ddc5ff609bb0bc157f9122783be1c01bf8c0d95360ebd8b5fa838c",
+      "status": "baseline",
+      "hypothesis": "baseline",
+      "created": 1791068795.2913668
+    }
+  ],
+  "runs": [],
+  "audit_chain_valid": true,
+  "benchmark": {
+    "sha256": "7c578f3363c7ec7320a0e67650c4a1279f29625676ed3af485a8221e65178108",
+    "counts": {
+      "dev": 20,
+      "validation": 20,
+      "final": 20
+    },
+    "kind": "authored synthetic pilot; not SWE-bench"
+  },
+  "implementation": "RSI 0.2.1; experimental local controller",
+  "campaign_estimate": {
+    "max_calls_one_generation": 907,
+    "max_reserved_tokens": 9287680,
+    "note": "Upper bound; early rejection reduces work. A smaller budget may end before confirmation."
+  }
+}

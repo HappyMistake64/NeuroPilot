@@ -1,0 +1,277 @@
+{
+  "suite": "stress",
+  "implementation_sha256": "cff3191058dc4a9c7d7cff511a71152d8f413087363d577c8f04eca0414dd9f4",
+  "python": "3.12.14",
+  "result": {
+    "evidence_type": "actual SQLite/OS measurements; outage scenarios use explicit fixtures",
+    "quota_trials": [
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      },
+      {
+        "attempts": 500,
+        "accepted": 50,
+        "usage": {
+          "n": 50,
+          "charged": 5000,
+          "actual": null,
+          "unknown": 50
+        },
+        "audit_valid": true
+      }
+    ],
+    "repeated_status": {
+      "iterations": 500,
+      "fd_before": 4,
+      "fd_after": 4,
+      "python_live_bytes_delta": 103434,
+      "python_peak_bytes": 426751,
+      "median_ms": 29.501034000531945,
+      "p95_ms": 36.661533998994855
+    },
+    "audit_scaling": [
+      {
+        "events": 0,
+        "median_status_ms": 0.9195849997922778,
+        "p95_status_ms": 1.3043870003457414
+      },
+      {
+        "events": 1000,
+        "median_status_ms": 8.582852000472485,
+        "p95_status_ms": 11.352908999469946
+      },
+      {
+        "events": 10000,
+        "median_status_ms": 74.44194050003716,
+        "p95_status_ms": 78.94762500109209
+      }
+    ],
+    "injected_outages": [
+      {
+        "nth_call": 1,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 1,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 1,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 3,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 3,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 3,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 5,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 5,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 5,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 10,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 10,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 10,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 20,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 20,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 20,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 30,
+        "repetition": 0,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 30,
+        "repetition": 1,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      },
+      {
+        "nth_call": 30,
+        "repetition": 2,
+        "status": "blocked",
+        "active_unchanged": true,
+        "audit_valid": true
+      }
+    ],
+    "limitations": "One shared host, not the user 8GB laptop; Python allocation tracing is not total model or system RAM."
+  },
+  "elapsed_seconds": 24.81385242900069,
+  "real_model_used": false
+}

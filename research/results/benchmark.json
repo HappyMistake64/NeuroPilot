@@ -1,0 +1,650 @@
+{
+  "suite": "benchmark",
+  "implementation_sha256": "cff3191058dc4a9c7d7cff511a71152d8f413087363d577c8f04eca0414dd9f4",
+  "python": "3.12.14",
+  "result": {
+    "evidence_type": "authored fixture execution; not agent capability",
+    "tasks": 60,
+    "reference_tasks_passed": 60,
+    "broken_tasks_detected": 60,
+    "broken_tasks_not_detected_by_public_check": 37,
+    "whitebox_lookup_tasks_passed": 60,
+    "extra_reference_cases": [
+      {
+        "family": "absolute",
+        "cases": 201,
+        "passed": 201
+      },
+      {
+        "family": "clamp",
+        "cases": 201,
+        "passed": 201
+      },
+      {
+        "family": "inclusive_sum",
+        "cases": 201,
+        "passed": 201
+      },
+      {
+        "family": "factorial",
+        "cases": 21,
+        "passed": 21
+      },
+      {
+        "family": "gcd",
+        "cases": 900,
+        "passed": 900
+      },
+      {
+        "family": "ceil_div",
+        "cases": 2010,
+        "passed": 2010
+      }
+    ],
+    "rows": [
+      {
+        "id": "dev-001",
+        "family": "absolute",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-002",
+        "family": "clamp",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-003",
+        "family": "inclusive_sum",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-004",
+        "family": "median",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-005",
+        "family": "factorial",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-006",
+        "family": "evens",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-007",
+        "family": "gcd",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-008",
+        "family": "power",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-009",
+        "family": "positive_count",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-010",
+        "family": "dot",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-011",
+        "family": "ceil_div",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-012",
+        "family": "percent",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-013",
+        "family": "angle",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-014",
+        "family": "distance",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-015",
+        "family": "prefix_sum",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-016",
+        "family": "extrema",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-017",
+        "family": "sign",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-018",
+        "family": "triangular",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-019",
+        "family": "multiple_floor",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "dev-020",
+        "family": "safe_division",
+        "split": "dev",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-001",
+        "family": "reverse_words",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-002",
+        "family": "vowels",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-003",
+        "family": "palindrome",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-004",
+        "family": "slug",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-005",
+        "family": "initials",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-006",
+        "family": "suffix",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-007",
+        "family": "truncate",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-008",
+        "family": "collapse_spaces",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-009",
+        "family": "anagram",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-010",
+        "family": "count_substring",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-011",
+        "family": "is_ascii_digits",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-012",
+        "family": "title_words",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-013",
+        "family": "common_prefix",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-014",
+        "family": "mask",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-015",
+        "family": "csv_trim",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-016",
+        "family": "first_unique",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-017",
+        "family": "snake_to_camel",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-018",
+        "family": "strip_prefix",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-019",
+        "family": "line_count",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "validation-020",
+        "family": "ascii_shift",
+        "split": "validation",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-001",
+        "family": "stable_unique",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-002",
+        "family": "flatten_one",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-003",
+        "family": "chunks",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-004",
+        "family": "rotate",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-005",
+        "family": "frequencies",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-006",
+        "family": "intersection",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-007",
+        "family": "difference",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-008",
+        "family": "merge_maps",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-009",
+        "family": "invert_groups",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-010",
+        "family": "without_null",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-011",
+        "family": "transpose",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-012",
+        "family": "zip_map",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-013",
+        "family": "pairwise",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-014",
+        "family": "partition",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": false,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-015",
+        "family": "indices",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-016",
+        "family": "sorted_records",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-017",
+        "family": "take_last",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-018",
+        "family": "dict_select",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-019",
+        "family": "compact",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      },
+      {
+        "id": "final-020",
+        "family": "alternating",
+        "split": "final",
+        "reference_passed": true,
+        "broken_passes_public": true,
+        "broken_passes_all": false,
+        "public_checks": 1,
+        "hidden_checks": 2
+      }
+    ],
+    "limitations": "Finite authored cases; whitebox lookup is a control that already knows answers; extra cases cover only six arithmetic families."
+  },
+  "elapsed_seconds": 0.010578913001154433,
+  "real_model_used": false
+}

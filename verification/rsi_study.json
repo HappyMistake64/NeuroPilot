@@ -1,0 +1,16 @@
+{
+  "run_id": "run-725ed43c2b08",
+  "kind": "study",
+  "generations": [],
+  "actual_rsi_improvement_proven": false,
+  "error": "Set model in RSI configuration first",
+  "status": "blocked",
+  "usage": {
+    "n": 0,
+    "charged": 0,
+    "actual": null,
+    "unknown": 0
+  },
+  "active": "agent-ffeade8dc78c",
+  "study_id": "study-1523be0e1f39"
+}

@@ -1,0 +1,12 @@
+{
+  "manifest": "/workspace/scratch/323697393493/rsi_actual_probe_331/study_manifest.json",
+  "sha256": "4fcaba0e8eaf0e64d61392f9d4bf2385b5798616b2a1aa0e451beae10b75593d",
+  "estimate": {
+    "rounds": 2,
+    "max_calls_per_arm": 770,
+    "audit_calls_reserved_per_arm": 36,
+    "max_reserved_tokens_per_arm": 7884800,
+    "interpretation": "Upper bound, not measured consumption. Each arm has the same configured total budget."
+  },
+  "warning": "Small authored pilot, not proof of real-world improvement."
+}

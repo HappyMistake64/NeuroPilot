@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NeuroPilot</title>
+  <style>
+    *{box-sizing:border-box} article{border:1px solid #ddd;padding:12px;border-radius:10px;margin:10px 0} li{display:flex;gap:10px;align-items:center;margin:8px 0;flex-wrap:wrap} button{margin:4px} button:disabled{opacity:.5} #status{color:#b42318} textarea,input{font:inherit} pre{overflow-wrap:anywhere} body{font-family:system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto; padding:16px; max-width:900px; margin:auto}
+    header{display:flex;align-items:center;gap:12px}
+    h1{margin:0;font-size:20px}
+    textarea{width:100%;height:110px;border-radius:8px;padding:8px;border:1px solid #ddd}
+    button{padding:8px 12px;border-radius:8px;border:0;background:#1677ff;color:#fff;font-weight:600}
+    section{margin-top:18px}
+    pre{white-space:pre-wrap;background:#f6f8fa;padding:10px;border-radius:8px;border:1px solid #eee}
+    .habit{border:1px solid #eee;padding:8px;margin-bottom:8px;border-radius:8px}
+    input[type="text"]{padding:8px;border-radius:8px;border:1px solid #ddd;width:70%}
+    small{color:#666}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NeuroPilot</h1>
+    <small>— lokální plánovač · pravidlový režim</small>
+  </header>
+
+  <p><a href="/rsi">Otevřít laboratoř RSI →</a></p>
+  <section id="neuro">
+    <h2>Požádej Neura</h2>
+    <textarea aria-label="Dotaz pro Neura" id="note" placeholder="Napiš myšlenku, úkol nebo dotaz..."></textarea>
+    <div style="margin-top:8px">
+      <button id="ask">Požádat Neura</button>
+    </div>
+    <h3>Výsledek</h3>
+    <pre id="out">Žádný výstup</pre>
+  </section>
+
+  <section id="notesSection">
+    <h2>Poznámky (AI)</h2>
+    <div id="notes"></div>
+  </section>
+
+  <section id="tasksSection">
+    <h2>Úkoly</h2>
+    <input aria-label="Nový úkol" id="taskInput" type="text" placeholder="nový úkol" />
+    <button id="addTask">Přidat</button>
+    <ul id="tasks"></ul>
+  </section>
+
+  <section id="habitsSection">
+    <h2>Návyky (základ)</h2>
+    <input aria-label="Nový návyk" id="habitTitle" type="text" placeholder="Nový návyk (např. 10 min cvičení)" />
+    <button id="addHabit">Přidat návyk</button>
+    <div id="habits"></div>
+  </section>
+
+  <section>
+    <h2>Záloha dat</h2>
+    <a href="/export">Stáhnout JSON</a>
+    <input id="importFile" type="file" accept=".json,application/json" aria-label="Soubor zálohy" />
+    <button id="importData">Importovat zálohu</button>
+  </section>
+  <p id="status" role="status" aria-live="polite"></p>
+  <script src="/app.js"></script>
+</body>
+</html>

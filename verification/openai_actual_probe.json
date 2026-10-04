@@ -1,0 +1,108 @@
+{
+  "init": {
+    "exit_code": 0,
+    "result": {
+      "active": "agent-44882bca8c52",
+      "artifacts": [
+        {
+          "id": "agent-44882bca8c52",
+          "parent": null,
+          "sha": "b829c36360ddc5ff609bb0bc157f9122783be1c01bf8c0d95360ebd8b5fa838c",
+          "status": "baseline",
+          "hypothesis": "baseline",
+          "created": 1791070946.7040887
+        }
+      ],
+      "runs": [],
+      "audit_chain_valid": true,
+      "benchmark": {
+        "sha256": "7c578f3363c7ec7320a0e67650c4a1279f29625676ed3af485a8221e65178108",
+        "counts": {
+          "dev": 20,
+          "validation": 20,
+          "final": 20
+        },
+        "kind": "authored synthetic pilot; not SWE-bench"
+      },
+      "implementation": "RSI 0.3.0; experimental controller",
+      "provider": {
+        "kind": "ollama",
+        "model": ""
+      },
+      "campaign_estimate": {
+        "max_calls_one_generation": 907,
+        "max_reserved_tokens": 9287680,
+        "note": "Upper bound; early rejection reduces work. A smaller budget may end before confirmation."
+      }
+    }
+  },
+  "config": {
+    "exit_code": 0,
+    "result": {
+      "provider": "chatgpt",
+      "openai_model": "",
+      "model": "",
+      "ollama_url": "http://127.0.0.1:11434",
+      "sandbox": "auto",
+      "image": "python:3.12-slim",
+      "sandbox_timeout": 10,
+      "memory_mb": 512,
+      "model_timeout": 120,
+      "context_tokens": 8192,
+      "output_tokens": 2048,
+      "max_calls": 150,
+      "max_tokens": 1600000,
+      "max_seconds": 1800,
+      "steps_per_task": 3,
+      "max_generations": 2,
+      "stagnation_limit": 3,
+      "max_files": 3,
+      "max_changed_lines": 200,
+      "auto_promote": false,
+      "min_new_wins": 2,
+      "repeats": 3,
+      "allow_efficiency": true,
+      "min_token_saving_percent": 15
+    }
+  },
+  "status": {
+    "exit_code": 0,
+    "result": {
+      "active": null,
+      "accounts": [],
+      "inference_verified": false
+    }
+  },
+  "provider_check": {
+    "exit_code": 2,
+    "result": {
+      "run_id": "run-809621c889b6",
+      "kind": "provider_check",
+      "model_inference_verified": false,
+      "actual_rsi_improvement_proven": false,
+      "error": "Nejdřív se přihlas přes Continue with ChatGPT.",
+      "status": "blocked",
+      "usage": {
+        "n": 0,
+        "charged": 0,
+        "actual": null,
+        "unknown": 0
+      }
+    }
+  },
+  "doctor": {
+    "exit_code": 2,
+    "result": {
+      "model": {
+        "ok": false,
+        "error": "Nejdřív se přihlas přes Continue with ChatGPT."
+      },
+      "sandbox": {
+        "ok": false,
+        "error": "No verified sandbox. podman: not installed; docker: not installed; bwrap: Isolation probe failed: bwrap: open /proc/13/ns/ns failed: No such file or directory\n"
+      },
+      "ready": false,
+      "model_inference_verified": false
+    }
+  }
+}

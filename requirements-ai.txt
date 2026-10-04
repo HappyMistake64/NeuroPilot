@@ -1,0 +1,4 @@
+-r requirements.txt
+gradio>=5,<7
+transformers>=4.45,<6
+torch>=2.2

@@ -1,0 +1,165 @@
+{
+  "suite": "gates",
+  "implementation_sha256": "cff3191058dc4a9c7d7cff511a71152d8f413087363d577c8f04eca0414dd9f4",
+  "python": "3.12.14",
+  "result": {
+    "evidence_type": "Monte Carlo simulation, not model measurements",
+    "seed": 20261004,
+    "capability": [
+      {
+        "scenario": "null_half",
+        "tasks_per_split": 20,
+        "repeats": 1,
+        "simulations": 50000,
+        "one_split_accepted": 169,
+        "both_splits_accepted": 1,
+        "one_split_percent": 0.338,
+        "both_splits_percent": 0.002
+      },
+      {
+        "scenario": "null_half",
+        "tasks_per_split": 20,
+        "repeats": 3,
+        "simulations": 50000,
+        "one_split_accepted": 0,
+        "both_splits_accepted": 0,
+        "one_split_percent": 0.0,
+        "both_splits_percent": 0.0
+      },
+      {
+        "scenario": "null_half",
+        "tasks_per_split": 20,
+        "repeats": 5,
+        "simulations": 50000,
+        "one_split_accepted": 0,
+        "both_splits_accepted": 0,
+        "one_split_percent": 0.0,
+        "both_splits_percent": 0.0
+      },
+      {
+        "scenario": "gain_half_to_seven_tenths",
+        "tasks_per_split": 20,
+        "repeats": 1,
+        "simulations": 50000,
+        "one_split_accepted": 1867,
+        "both_splits_accepted": 74,
+        "one_split_percent": 3.734,
+        "both_splits_percent": 0.148
+      },
+      {
+        "scenario": "gain_half_to_seven_tenths",
+        "tasks_per_split": 20,
+        "repeats": 3,
+        "simulations": 50000,
+        "one_split_accepted": 0,
+        "both_splits_accepted": 0,
+        "one_split_percent": 0.0,
+        "both_splits_percent": 0.0
+      },
+      {
+        "scenario": "gain_half_to_seven_tenths",
+        "tasks_per_split": 20,
+        "repeats": 5,
+        "simulations": 50000,
+        "one_split_accepted": 0,
+        "both_splits_accepted": 0,
+        "one_split_percent": 0.0,
+        "both_splits_percent": 0.0
+      },
+      {
+        "scenario": "nearly_deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 1,
+        "simulations": 50000,
+        "one_split_accepted": 36473,
+        "both_splits_accepted": 26494,
+        "one_split_percent": 72.946,
+        "both_splits_percent": 52.988
+      },
+      {
+        "scenario": "nearly_deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 3,
+        "simulations": 50000,
+        "one_split_accepted": 4465,
+        "both_splits_accepted": 395,
+        "one_split_percent": 8.93,
+        "both_splits_percent": 0.79
+      },
+      {
+        "scenario": "nearly_deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 5,
+        "simulations": 50000,
+        "one_split_accepted": 906,
+        "both_splits_accepted": 12,
+        "one_split_percent": 1.812,
+        "both_splits_percent": 0.024
+      },
+      {
+        "scenario": "deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 1,
+        "simulations": 50000,
+        "one_split_accepted": 50000,
+        "both_splits_accepted": 50000,
+        "one_split_percent": 100.0,
+        "both_splits_percent": 100.0
+      },
+      {
+        "scenario": "deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 3,
+        "simulations": 50000,
+        "one_split_accepted": 50000,
+        "both_splits_accepted": 50000,
+        "one_split_percent": 100.0,
+        "both_splits_percent": 100.0
+      },
+      {
+        "scenario": "deterministic_four_new_wins",
+        "tasks_per_split": 20,
+        "repeats": 5,
+        "simulations": 50000,
+        "one_split_accepted": 50000,
+        "both_splits_accepted": 50000,
+        "one_split_percent": 100.0,
+        "both_splits_percent": 100.0
+      }
+    ],
+    "efficiency": [
+      {
+        "noise": "independent_noise",
+        "true_token_saving_percent": 0,
+        "simulations": 50000,
+        "accepted": 93,
+        "accepted_percent": 0.186
+      },
+      {
+        "noise": "independent_noise",
+        "true_token_saving_percent": 10.0,
+        "simulations": 50000,
+        "accepted": 7574,
+        "accepted_percent": 15.148
+      },
+      {
+        "noise": "independent_noise",
+        "true_token_saving_percent": 20.0,
+        "simulations": 50000,
+        "accepted": 43189,
+        "accepted_percent": 86.378
+      },
+      {
+        "noise": "shared_run_drift",
+        "true_token_saving_percent": 0,
+        "simulations": 50000,
+        "accepted": 17506,
+        "accepted_percent": 35.012
+      }
+    ],
+    "actual_gate_crosschecks": 320,
+    "assumptions": "Independent Bernoulli trials and independent confirmation splits for capability; lognormal token noise sigma=0.3 with stable successful outcomes for efficiency. Shared drift uses one factor across an entire measurement. No actual provider was called."
+  },
+  "elapsed_seconds": 5.496341908001341,
+  "real_model_used": false
+}

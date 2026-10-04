@@ -1,0 +1,9 @@
+{
+  "title": "NeuroPilot",
+  "version": "3.3.1",
+  "agent": {
+    "story_mode": true,
+    "values": {"truth": 0.7, "novelty": 0.55, "coherence": 0.6},
+    "web_cfg": {"enabled": false, "batch_enabled": true, "whitelist": ["arxiv.org"], "timeout_seconds": 5, "max_bytes": 800000, "rate_limit_per_min": 6, "batch_max": 3}
+  }
+}

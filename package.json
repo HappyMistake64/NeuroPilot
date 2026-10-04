@@ -1,0 +1,14 @@
+{
+  "name": "neuropilot-ui-tests",
+  "private": true,
+  "scripts": {
+    "test:ui": "node tests/test_frontend.cjs",
+    "test:rsi-ui": "node tests/test_rsi_frontend.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.1"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

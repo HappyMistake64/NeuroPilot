@@ -1,0 +1,30 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+node_modules/
+.coverage
+htmlcov/
+
+# Local application state and account credentials
+rsi_state/
+.env
+.env.*
+!.env.example
+accounts.json
+auth.json
+*.pem
+*.key
+*.sqlite*
+*.db
+*.log
+/data.json
+/.codex/
+
+# Local packaging and editor state
+/dist/
+/build/
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,12 @@
+{
+  "model": {
+    "ok": false,
+    "error": "Set model in RSI configuration first"
+  },
+  "sandbox": {
+    "ok": false,
+    "error": "No verified sandbox. podman: not installed; docker: not installed; bwrap: Isolation probe failed: bwrap: open /proc/10/ns/ns failed: No such file or directory\n"
+  },
+  "ready": false,
+  "model_inference_verified": false
+}

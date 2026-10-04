@@ -1,0 +1,52 @@
+{
+  "suite": "robustness",
+  "implementation_sha256": "cff3191058dc4a9c7d7cff511a71152d8f413087363d577c8f04eca0414dd9f4",
+  "python": "3.12.14",
+  "result": {
+    "evidence_type": "direct boundary probes; fake output and explicit provider fixtures only",
+    "probes": [
+      {
+        "name": "wrong_large_integer_accepted",
+        "result": true
+      },
+      {
+        "name": "huge_equal_integer_comparison",
+        "exception": "OverflowError",
+        "message": "int too large to convert to float"
+      },
+      {
+        "name": "bool_confused_with_integer",
+        "result": false
+      },
+      {
+        "name": "missing_value_accepted_as_null",
+        "result": true
+      },
+      {
+        "name": "malformed_tool_path",
+        "exception": "TypeError",
+        "message": "unhashable type: 'list'"
+      },
+      {
+        "name": "negative_reservation",
+        "result": "call-c841b289d1fc4d78af189965416af8cc"
+      },
+      {
+        "name": "charged_after_negative_reservation",
+        "result": -100
+      },
+      {
+        "name": "cross_split_clone_accepted",
+        "result": true
+      },
+      {
+        "name": "retired_holdout_reaches_development_provider",
+        "result": true,
+        "run_status": "complete",
+        "error": null
+      }
+    ]
+  },
+  "elapsed_seconds": 0.06215015099951415,
+  "real_model_used": false
+}

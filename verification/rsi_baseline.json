@@ -1,0 +1,15 @@
+{
+  "run_id": "run-52b3f423e41e",
+  "kind": "baseline",
+  "generations": [],
+  "actual_rsi_improvement_proven": false,
+  "error": "Set model in RSI configuration first",
+  "status": "blocked",
+  "usage": {
+    "n": 0,
+    "charged": 0,
+    "actual": null,
+    "unknown": 0
+  },
+  "active": "agent-ffeade8dc78c"
+}

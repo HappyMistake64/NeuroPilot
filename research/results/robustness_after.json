@@ -1,0 +1,53 @@
+{
+  "suite": "robustness",
+  "implementation_sha256": "3abc4b9380fcde4926e084230e6dfbb7b0adcd84a4c113a4f7062d94c2f7c634",
+  "python": "3.12.14",
+  "result": {
+    "evidence_type": "direct boundary probes; fake output and explicit provider fixtures only",
+    "probes": [
+      {
+        "name": "wrong_large_integer_accepted",
+        "result": false
+      },
+      {
+        "name": "huge_equal_integer_comparison",
+        "result": true
+      },
+      {
+        "name": "bool_confused_with_integer",
+        "result": false
+      },
+      {
+        "name": "missing_value_accepted_as_null",
+        "result": false
+      },
+      {
+        "name": "malformed_tool_path",
+        "exception": "RSIError",
+        "message": "File is outside the editable task"
+      },
+      {
+        "name": "negative_reservation",
+        "exception": "RSIError",
+        "message": "Token reservation must be a positive integer"
+      },
+      {
+        "name": "charged_after_negative_reservation",
+        "result": 0
+      },
+      {
+        "name": "cross_split_clone_accepted",
+        "exception": "RSIError",
+        "message": "Duplicate task content in benchmark"
+      },
+      {
+        "name": "retired_holdout_reaches_development_provider",
+        "result": false,
+        "run_status": "failed",
+        "error": "Previously consumed holdout cannot be reused in any split"
+      }
+    ]
+  },
+  "elapsed_seconds": 0.033749164000255405,
+  "real_model_used": false
+}
