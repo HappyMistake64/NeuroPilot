@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-04",
+  "base_commit": "70dd4578cebfad3f70847351d2f4c325b7eed295",
+  "python_tests": {
+    "passed": 284,
+    "live_sandboxes": [
+      "bwrap",
+      "docker"
+    ]
+  },
+  "planner_dom": "passed",
+  "rsi_dom": "passed",
+  "agent_test": "passed",
+  "dependency_audits": {
+    "runtime": {
+      "packages": 11,
+      "known_vulnerabilities": 0
+    },
+    "development": {
+      "packages": 16,
+      "known_vulnerabilities": 0
+    },
+    "optional_ai_linux": {
+      "packages": 85,
+      "known_vulnerabilities": 0
+    },
+    "audit_tooling": {
+      "packages": 29,
+      "known_vulnerabilities": 0
+    }
+  },
+  "npm_audit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "secret_scan": {
+    "tool": "gitleaks 8.30.1",
+    "history_findings": 0,
+    "working_tree_findings": 0,
+    "archive_depth": 2,
+    "decode_depth": 2,
+    "exception": "Exact historical source_sha256 checksum finding in verification/results.json, not a credential"
+  },
+  "github_settings_observed": {
+    "visibility": "public",
+    "main_protected": false,
+    "rulesets": [],
+    "private_vulnerability_reporting": true,
+    "administration_access": "403 Resource not accessible by integration",
+    "settings_changed": false
+  },
+  "limitations": [
+    "CodeQL requires GitHub execution; see workflow result",
+    "No claim of complete security or absence of unknown vulnerabilities",
+    "Optional AI dependency audit is not model/GPU execution testing",
+    "Host/Origin and response headers do not provide user authentication",
+    "External URL DNS validation is not a network egress firewall"
+  ]
+}

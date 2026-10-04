@@ -73,7 +73,8 @@ přes vlastní návrh a izolované hodnocení až po vnější rozhodnutí o zam
 
 Závislosti: `python -m pip install -r requirements-dev.txt` a
 `npm install --ignore-scripts --no-audit --no-fund --package-lock=false`.
-Repozitář nemá npm lockfile, proto se nepoužívá `npm ci`.
+Při tomto měření repozitář ještě neměl npm lockfile. Bezpečnostní aktualizace
+po tomto reportu přidává lockfiles; pro aktuální instalaci postupuj podle `SECURITY.md`.
 
 ```bash
 python -m rsi codex-login  # jen pokud platné přihlášení chybí

@@ -222,3 +222,42 @@ def test_model_context_reserved(monkeypatch):
     assert ai_tools.llm('x'*10000,200) == 'answer'
     assert pipe.tokenizer.truncation_side == 'right'
     with pytest.raises(ValueError): ai_tools.llm('prompt',1000)
+
+
+@pytest.mark.parametrize('origin', [
+    'https://localhost', 'http://localhost:5001', 'null',
+    'http://user@localhost', 'http://localhost/path', 'http://localhost?x=1',
+    'http://localhost#fragment', 'http://[broken',
+])
+def test_strict_origin_rejects_before_mutation(client, origin):
+    assert client.post('/tasks', json={'text':'blocked'}, headers={'Origin':origin}).status_code == 403
+    assert client.get('/tasks').json == []
+
+
+@pytest.mark.parametrize('site', ['cross-site', 'same-site'])
+def test_browser_metadata_blocks_originless_mutations(client, site):
+    assert client.post('/tasks', json={'text':'blocked'}, headers={'Sec-Fetch-Site':site}).status_code == 403
+    assert client.post('/rsi/api/init', headers={'Sec-Fetch-Site':site}).status_code == 403
+
+
+def test_equivalent_origin_and_local_clients_still_work(client):
+    assert client.post('/tasks', json={'text':'browser'}, headers={'Origin':'http://LOCALHOST:80','Sec-Fetch-Site':'same-origin'}).status_code == 201
+    assert client.post('/tasks', json={'text':'local CLI'}).status_code == 201
+
+
+@pytest.mark.parametrize('host', ['attacker@localhost', 'localhost/path', '[broken', 'localhost:invalid'])
+def test_malformed_host_is_rejected(client, host):
+    assert client.get('/health', headers={'Host':host}).status_code == 403
+
+
+@pytest.mark.parametrize('path', ['/', '/rsi', '/tasks', '/export', '/missing'])
+def test_browser_protections_cover_pages_data_and_errors(client, path):
+    response = client.get(path)
+    assert response.headers['X-Frame-Options'] == 'DENY'
+    assert response.headers['X-Content-Type-Options'] == 'nosniff'
+    policy = response.headers['Content-Security-Policy']
+    assert "script-src 'self'" in policy and "frame-ancestors 'none'" in policy
+    assert "object-src 'none'" in policy and "base-uri 'none'" in policy
+    assert response.headers['Referrer-Policy'] == 'no-referrer'
+    if response.is_json:
+        assert response.headers['Cache-Control'] == 'no-store'

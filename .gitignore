@@ -28,3 +28,13 @@ auth.json
 .DS_Store
 .idea/
 .vscode/
+
+# Personal planner/agent data and generated projects (never publish)
+/memory.json
+/state/
+/internet_state.json
+/generated/
+*.p12
+*.pfx
+id_rsa
+id_ed25519
