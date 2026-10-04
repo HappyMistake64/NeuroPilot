@@ -58,3 +58,19 @@ authButton('openai_save',()=>api('openai/configure',{model:$('openai_model').val
 authButton('use_ollama',()=>api('openai/ollama',{}));
 refreshOpenAI().catch(e=>{$('openai_status').textContent=e.message;});
 setInterval(()=>refreshOpenAI().catch(e=>{$('openai_status').textContent=e.message;}),3000);
+
+for(const id of ['codex_models','codex_save'])$(id).onclick=async()=>{
+ $(id).disabled=true;
+ try{
+  $('message').textContent='';
+  if(id==='codex_models'){
+   const data=await api('codex/status',{});
+   $('codex_model').replaceChildren(new Option('Vyber model',''),...(data.models||[]).map(m=>new Option(m.id,m.id)));
+   $('codex_status').textContent=data.signed_in?'ChatGPT je přihlášený. Vyber model, použij ho pro RSI a spusť test spojení.':'Nejdřív spusť codex-login v terminálu.';
+  }else{
+   await api('codex/configure',{model:$('codex_model').value});
+   $('codex_status').textContent='Codex je vybraný pro RSI. Skutečnou odpověď ověř tlačítkem Otestovat spojení.';
+   await refresh();
+  }
+ }catch(e){$('message').textContent=e.message;}finally{$(id).disabled=false;}
+};

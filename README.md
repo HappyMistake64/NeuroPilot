@@ -2,7 +2,7 @@
 
 **Nové připojení OpenAI:** na `/rsi` klikni na **Continue with ChatGPT**, dokonči přihlášení, načti a vyber model. Podrobný postup a limity jsou v `OPENAI_README.md`. API klíč ani Codex CLI nejsou potřeba.
 
-**Cloudový Codex / telefon:** nové `python -m rsi codex-login` podporuje přihlášení pomocí kódu na telefonu. `python -m rsi codex-check` ověří skutečnou odpověď modelu přes Codex app-server. Úspěšný dotaz a limity této cesty jsou v `CODEX_CONNECTION_REPORT.md`; automatické RSI kampaně ji zatím nepoužívají. Přímý OAuth provider má nadále vlastní registraci a postup `openai-import` v `OPENAI_README.md`.
+**Cloudový Codex / telefon:** nové `python -m rsi codex-login` podporuje přihlášení pomocí kódu na telefonu. `python -m rsi codex-check` ověří skutečnou odpověď modelu přes Codex app-server. Úspěšný dotaz a limity této cesty jsou v `CODEX_CONNECTION_REPORT.md`; provider `codex` nyní připojuje i baseline a RSI kampaně přes bránu, která počítá každý HTTP požadavek. Výběr modelu je přímo na `/rsi`; živé výsledky jsou v `RSI_CODEX_REPORT.md`. Přímý OAuth provider má nadále vlastní registraci a postup `openai-import` v `OPENAI_README.md`.
 
 **Výzkum a opravy 3.3.1:** otevři `research/report.html` nebo `research/RESEARCH_REPORT.md`. Obsahují měření, simulace a reprodukční příkazy.
 
@@ -91,7 +91,7 @@ npm run test:ui
 npm run test:rsi-ui
 ```
 
-Pod Windows nastav `PYTHON` na cestu k Pythonu ve virtuálním prostředí, pokud příkaz `python3` nemáš. Test DOM neověřuje vizuální vzhled ani Safari. Grafické ověření v reálném prohlížeči a inference se skutečným modelem jsou stále otevřené.
+Pod Windows nastav `PYTHON` na cestu k Pythonu ve virtuálním prostředí, pokud příkaz `python3` nemáš. Test DOM neověřuje vizuální vzhled ani Safari. Grafické ověření v reálném prohlížeči a Safari zůstává otevřené. Skutečná inference přes Codex je doložená v `RSI_CODEX_REPORT.md`.
 
 ## iPhone / Pythonista
 

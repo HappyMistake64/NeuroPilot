@@ -80,9 +80,29 @@ def openai_action(action):
             return jsonify(error='Unknown OpenAI action'),400
     except (RSIError,OSError,ValueError) as error:return jsonify(error=str(error)),400
 
+@blueprint.route('/rsi/api/codex/<action>',methods=['POST'])
+def codex_action(action):
+    from .codex_connection import status
+    from .codex_provider import Codex
+    body=request.get_json()
+    if not isinstance(body,dict):return jsonify(error='Expected JSON object'),400
+    try:
+        obj=engine()
+        with obj.registry.exclusive():
+            if action=='status':return jsonify(status())
+            if action=='configure':
+                model=body.get('model')
+                if not isinstance(model,str) or not model.strip():raise RSIError('Vyber model z aktuálního seznamu.')
+                cfg=dict(obj.cfg,provider='codex',codex_model=model)
+                Codex(cfg,obj.registry).probe()
+                atomic_json(obj.root/'config.json',cfg)
+                return jsonify(provider='codex',model=model)
+            return jsonify(error='Unknown Codex action'),400
+    except (RSIError,OSError,ValueError) as error:return jsonify(error=str(error)),400
+
 @blueprint.after_request
 def private_responses(response):
-    if request.path.startswith('/rsi/api/openai/'):
+    if request.path.startswith(('/rsi/api/openai/','/rsi/api/codex/')):
         response.headers['Cache-Control']='no-store'
         response.headers['Referrer-Policy']='no-referrer'
     return response

@@ -1,5 +1,7 @@
 # NeuroPilot — plán řízeného rekurzivního sebezdokonalování
 
+Aktualizace 4. 10. 2026: plán je původní výzkumná roadmapa. Dodaná implementace a skutečné výsledky připojení Codexu, baseline a pilotu jsou v `RSI_STATUS.md` a `RSI_CODEX_REPORT.md`. Ověřená inference sama neuzavírá výzkumné podmínky RSI-4 až RSI-6.
+
 Datum: 3. října 2026. Výchozí projekt: NeuroPilot 3.1.0. Stav dokumentu: návrh implementace; popsané nové schopnosti nejsou dosud naprogramovány.
 
 RSI zde znamená Recursive Self-Improvement: agent upraví vlastní postup nebo povolenou část implementace, prokáže užitek v nezávislém měření a jeho nová verze se stane výchozím agentem dalšího kola. Cílem je doložit opakované zlepšení konkrétní schopnosti. Zrychlující se růst schopností, obecná inteligence ani neomezené sebezdokonalování nejsou předpokladem ani slíbeným výsledkem.

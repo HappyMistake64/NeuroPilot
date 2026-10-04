@@ -180,9 +180,49 @@ NeuroPilot nepředává projektu ani skryté testy a nepovoluje požadavky na n�
 Kontrola dodržuje lokální timeout a tokenový účetní rozpočet, nepoužívá fallback
 na API klíč nebo jiného providera. Neukládej výpis jednorázového kódu do GitHubu.
 
-**Tato cesta zatím není providerem pro RSI kampaně.** Jeden tah Codexu může
+**Samostatný `codex-check` není providerem pro RSI kampaně.** Jeden tah Codexu může
 zahrnovat více interních modelových požadavků a opakování. Report proto uvádí
 `budget_unit: codex_turn`, `underlying_model_calls: null` a
-`rsi_experiments_supported: false`. Nelze jej zapnout jako `provider=codex`.
-Stávající počty modelových volání, sandbox a brány experimentů se tím neoslabují.
-K rozšíření na kampaně je nutné doplnit a ověřit měření interních volání.
+`rsi_experiments_supported: false`. Pro RSI použij níže popsaný provider s vlastní rozpočtovou bránou.
+
+## Codex pro baseline a RSI kampaně
+
+Po `codex-login` vyber model na `/rsi`: **Načíst modely Codexu → Použít Codex
+pro RSI → Otestovat spojení**. Nebo v terminálu:
+
+```bash
+python -m rsi codex-status
+python -m rsi config --set provider=codex --set codex_model=ID_Z_VYPISU
+python -m rsi provider-check
+python -m rsi init
+python -m rsi doctor
+python -m rsi baseline --limit 10
+python -m rsi campaign --generations 1
+```
+
+Tento provider používá oficiální rozhraní Codex app-server a jeho konfigurovatelného
+Responses providera (`requires_openai_auth=true`). Lokální brána s náhodnou cestou
+na loopbacku rezervuje **každý skutečně předaný HTTP požadavek před odesláním**,
+včetně případných opakování klienta. Přihlašovací hlavičky předá pouze v paměti
+na výchozí backend oficiálního Codexu; nečte `auth.json`, nekopíruje tokeny do
+registru a nepoužívá přímý SIWC OAuth token. Brána není obecná HTTP proxy.
+
+Při vyčerpání počtu volání nebo rezervací tokenů další požadavek neodešle.
+Chybějící spotřeba ponechá rezervaci; známé skutečné tokeny ji nahradí.
+Server nevynucuje náš tokenový strop, takže jeden požadavek může účetní rozpočet
+překročit. Potom se běh zastaví. Timeout a stop ukončí upstream proces.
+
+Nativní nástroje Codexu jsou vypnuté a z požadavků odstraněné. Model vrací JSON
+pro existující broker NeuroPilotu. Kandidátní Python a řešení úloh běží nadále
+v ověřeném Docker/Podman/Bubblewrap sandboxu bez sítě, tokenů a skrytých testů.
+Brány přijetí ani `auto_promote=false` se nemění. Přihlášený účet je během
+experimentu kontrolován pomocí otisku identity; model nemá fallback.
+
+Ověřená verze klienta: `codex 0.159.0-alpha.3`. Rozhraní app-server využívá
+experimentální pole; po aktualizaci CLI znovu spusť test spojení. Tato verze
+podporuje pouze výchozí backend `https://chatgpt.com` bez omezení směrování
+workspace. Jinou regionální/residenční politiku odmítne. Modely bez této
+kompatibility jsou překážkou, kterou aplikace neobchází. Seed ani konkrétní váhy
+hostovaného modelu nelze připnout; report to výslovně uvádí.
+
+Aktuální živé výsledky a reprodukci obsahuje `RSI_CODEX_REPORT.md`.

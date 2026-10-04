@@ -1,0 +1,23 @@
+{
+  "actual_rsi_improvement_proven": false,
+  "kind": "provider_check",
+  "model": {
+    "call_budget": "each_forwarded_http_request",
+    "model": "gpt-6.1-sol",
+    "provider": "codex_chatgpt",
+    "seed_supported": false,
+    "token_budget": "accounting_guard_not_server_cap",
+    "tools": [],
+    "transport": "local_budget_gateway",
+    "weights_pinned": false
+  },
+  "model_inference_verified": true,
+  "run_id": "run-7a3dc9b41841",
+  "status": "complete",
+  "usage": {
+    "actual": 1548,
+    "charged": 1548,
+    "n": 1,
+    "unknown": 0
+  }
+}

@@ -1,5 +1,7 @@
 # NeuroPilot 3.4.0 — experimentální RSI 0.3
 
+Cloudové připojení přes předplatné ChatGPT: na `/rsi` vyber model v části **ChatGPT přes Codex v cloudu**, nebo nastav `provider=codex` a `codex_model`. Přihlášení z telefonu: `python -m rsi codex-login`. Postup a omezení jsou v `OPENAI_README.md`, živé výsledky v `RSI_CODEX_REPORT.md`.
+
 Tato verze přidává implementaci částí RSI-0 až RSI-6 k původnímu plánovači. Umí řídit vlastní změny jednoho Python modulu agenta, měřit jejich výsledky, přijímat ověřené kandidáty a použít přijatou verzi v dalším experimentu.
 
 **Stav ověření:** 202 automatických testů prošlo. Prošly také dva integrační testy DOM proti skutečnému Flask serveru. Modelová orchestrace a rekurzivní scénáře byly testovány výslovně označenými testovacími náhradami. Reálný model v tomto prostředí není nakonfigurován a systémové sandboxy zde nejsou funkční. Skutečná baseline schopností ani sebezdokonalení proto zatím změřeny nejsou. Produkční běh při chybějícím modelu nebo izolaci skončí stavem `blocked`.
@@ -182,7 +184,7 @@ npm run test:rsi-ui
 
 Přiložené `verification/rsi_doctor.json`, `verification/rsi_baseline.json` a `verification/rsi_study.json` zachycují skutečné zablokování této kontrolní relace. Neobsahují vymyšlené modelové skóre. Vizuální kontrola v Safari/Chromiu nebyla dokončena; testovány jsou DOM události.
 
-Neprovedené: reálná inference, kompletní modelová kampaň v cílovém sandboxu, potvrzení dvou skutečných zlepšení, skutečný A/B běh, širší real-world benchmark a statistická studie. A/B kontroler je implementovaný a otestovaný pomocí výslovně označených fixtures; jeho skutečný výsledek zatím neznáme. Pole `actual_rsi_improvement_proven` proto zůstává `false`; případný přínos uvnitř pilotu má zvláštní označení.
+Původní blokované běhy jsou historické; následná skutečná inference, baseline a pilot jsou doložené v `RSI_CODEX_REPORT.md`. Neprovedené zůstává potvrzení dvou skutečných zlepšení, skutečný A/B běh, širší real-world benchmark a statistická studie. A/B kontroler je implementovaný a otestovaný pomocí výslovně označených fixtures; jeho skutečný výsledek zatím neznáme. Pole `actual_rsi_improvement_proven` proto zůstává `false`; případný přínos uvnitř pilotu má zvláštní označení.
 
 ## Technické zdroje
 

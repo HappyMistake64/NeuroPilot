@@ -8,6 +8,9 @@ from urllib.error import URLError
 from .common import RSIError, Unavailable, canonical, digest
 
 def make_provider(cfg, registry):
+    if cfg['provider']=='codex':
+        from .codex_provider import Codex
+        return Codex(cfg, registry)
     if cfg['provider']=='chatgpt':
         from .openai_provider import ChatGPT
         return ChatGPT(cfg, registry)
