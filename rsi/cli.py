@@ -11,7 +11,8 @@ def main(argv=None):
     parser=argparse.ArgumentParser(description='NeuroPilot RSI experimental controller')
     parser.add_argument('--state',default=os.environ.get('NEUROPILOT_RSI_STATE',str(Path(__file__).resolve().parents[1]/'rsi_state')))
     sub=parser.add_subparsers(dest='command',required=True)
-    for name in ('init','doctor','status','reference-check','rollback','recover','provider-check','openai-status','openai-models','openai-logout'): sub.add_parser(name)
+    for name in ('init','doctor','status','reference-check','rollback','recover','provider-check','openai-status','openai-models','openai-logout','codex-status','codex-login'): sub.add_parser(name)
+    p=sub.add_parser('codex-check');p.add_argument('--model')
     p=sub.add_parser('openai-login');p.add_argument('--account');p.add_argument('--no-browser',action='store_true')
     p=sub.add_parser('openai-import',help='Import a protected NeuroPilot registration on a remote VM')
     p.add_argument('--file',required=True);p.add_argument('--account',required=True)
@@ -47,6 +48,16 @@ def main(argv=None):
             if args.command=='init': result=engine.init()
             elif args.command=='doctor': result=engine.doctor()
             elif args.command=='provider-check': result=engine.provider_check()
+            elif args.command=='codex-check':
+                from .codex_connection import connection_check
+                result=connection_check(engine,args.model)
+            elif args.command=='codex-status':
+                from .codex_connection import status
+                result=status()
+            elif args.command=='codex-login':
+                from .codex_connection import login
+                try: result=login()
+                except KeyboardInterrupt: result={'status':'cancelled','model_inference_verified':False}
             elif args.command.startswith('openai-'):
                 from .openai_auth import Accounts, begin_login
                 accounts=Accounts()
