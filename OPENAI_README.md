@@ -138,3 +138,51 @@ python -m rsi --state /chranena/cesta/connection-check provider-check
 Tokenový limit zůstává účetní, nikoli tvrdý limit serveru. Tento test nespouští
 kandidátní kód. Baseline a kampaně nadále vyžadují úspěšné ověření sandboxu;
 chybějící izolace se neobchází.
+
+## Alternativa pro telefon: připojení přes Codex app-server
+
+NeuroPilot má samostatné příkazy pro oficiální
+[Codex app-server](https://developers.openai.com/codex/app-server). Tato cesta
+používá přihlášení spravované Codexem a jeho podporovaný device-code flow.
+Není to import Codex tokenů do přímého OpenAI provideru. Tokeny čte, ukládá a
+obnovuje pouze Codex; NeuroPilot komunikuje přes lokální stdio JSON-RPC.
+
+```bash
+python -m rsi codex-status
+python -m rsi codex-login
+```
+
+`codex-login` spustí oficiální `codex login --device-auth`, který vypíše odkaz na `https://auth.openai.com/codex/device` a krátký
+jednorázový kód. Otevři odkaz na telefonu, zadej kód a dokonči přihlášení na
+stránce OpenAI. Terminál musí zůstat otevřený do potvrzení serverem, nejvýše
+10 minut. Device-code přihlášení může vyžadovat povolení v bezpečnostním nastavení
+účtu nebo workspace. Heslo ani přístupové tokeny se nezadávají do NeuroPilotu.
+Tento postup může obnovit přihlášení sdílené s místním Codex CLI.
+
+Samotný `codex-status` neověřuje model. Účet může být uveden jako přihlášený,
+i když je jeho token již odvolaný. K ověření použij:
+
+```bash
+python -m rsi --state /chranena/cesta/codex-check codex-check
+# Nebo explicitně model z codex-status:
+python -m rsi --state /chranena/cesta/codex-check codex-check --model ID_Z_VYPISU
+```
+
+NeuroPilot zadá jeden pevný dotaz s novou náhodnou hodnotou a požaduje její přesné
+vrácení v JSON. Teprve dokončený tah se správnou odpovědí a bez porušení rozpočtu
+má `model_inference_verified: true`. Výsledek a dostupné skutečné tokeny se uloží
+do RSI registru jako `codex_connection_check`. Chybějící spotřeba zůstává neznámá,
+ponechá se rezervace. Při chybě přihlášení spusť znovu `codex-login`.
+
+Proces běží v prázdném dočasném adresáři, s vypnutými nástroji, pluginy, MCP
+servery, hooks a přístupem k execution environments; sandbox je pouze pro čtení.
+NeuroPilot nepředává projektu ani skryté testy a nepovoluje požadavky na nástroje.
+Kontrola dodržuje lokální timeout a tokenový účetní rozpočet, nepoužívá fallback
+na API klíč nebo jiného providera. Neukládej výpis jednorázového kódu do GitHubu.
+
+**Tato cesta zatím není providerem pro RSI kampaně.** Jeden tah Codexu může
+zahrnovat více interních modelových požadavků a opakování. Report proto uvádí
+`budget_unit: codex_turn`, `underlying_model_calls: null` a
+`rsi_experiments_supported: false`. Nelze jej zapnout jako `provider=codex`.
+Stávající počty modelových volání, sandbox a brány experimentů se tím neoslabují.
+K rozšíření na kampaně je nutné doplnit a ověřit měření interních volání.

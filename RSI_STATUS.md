@@ -60,3 +60,19 @@ testy obou sandboxů; oba DOM testy prošly. `reference-check` přes Bubblewrap 
 práci. Přímé připojení modelu stále vyžaduje vlastní OAuth registraci NeuroPilotu;
 na telefonu nelze lokální loopback přihlášení cloudové aplikace dokončit.
 Aktuální důkazy jsou v `verification/cloud_*` a `CLOUD_CONNECTION_REPORT.md`.
+
+
+## Skutečný modelový dotaz přes Codex app-server — 4. 10. 2026
+
+Po novém device-code přihlášení potvrzeném uživatelem na telefonu provedl
+NeuroPilot příkazem `codex-check` skutečný dotaz na `gpt-6.1-sol`. Model vrátil
+správný JSON s náhodnou výzvou; `model_inference_verified: true`, 5 040 vstupních
++ 38 výstupních tokenů. Důkaz: `verification/codex_model_connection.json` a
+`CODEX_CONNECTION_REPORT.md`. 239 testů včetně živých sandboxů, test agenta a oba
+DOM testy prošly.
+
+Samotné původní přihlášení Codexu nestačilo: skutečný pokus odhalil odvolanou
+relaci. Po jejím obnovení se úspěšně ověřila až odpověď aplikace. Přímý OAuth
+provider tím vlastní registraci nezískal. App-server má jinou jednotku rozpočtu
+(tah, nikoli spolehlivě jeden modelový požadavek), proto není zapojen do RSI
+kampaní. Skutečná modelová baseline a A/B experiment zůstávají neprovedené.

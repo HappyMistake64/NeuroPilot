@@ -2,8 +2,9 @@
 
 Výchozí commit `main`: `676ee04`. Větev: `feat/chatgpt-cloud-connection`.
 
-**Výsledek: skutečná inference je blokovaná chybějící vlastní registrací
-NeuroPilotu. Modelová odpověď ani využití předplatného aplikací nebyly ověřeny.**
+**Historický výsledek přímého OAuth provideru: inference byla blokovaná chybějící
+vlastní registrací NeuroPilotu. Následné úspěšné připojení přes Codex app-server
+a přihlášení z telefonu dokumentuje `CODEX_CONNECTION_REPORT.md`.**
 
 ## Podporované přihlášení
 
