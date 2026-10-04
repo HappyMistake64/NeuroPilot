@@ -40,3 +40,24 @@ jobs:
       - uses: github/codeql-action/analyze@7999b86c43a865dc79d8923397f35af22de63401 # v4
         with:
           category: '/language:${{ matrix.language }}'
+          output: codeql-results
+      - name: Require review of every emitted CodeQL finding
+        shell: bash
+        run: |
+          python3 - <<'PYCODEQL'
+          import json
+          from pathlib import Path
+          files = list(Path('codeql-results').glob('*.sarif'))
+          if not files:
+              raise SystemExit('CodeQL produced no SARIF report')
+          count = 0
+          for path in files:
+              for run in json.loads(path.read_text())['runs']:
+                  if any(item.get('executionSuccessful') is False for item in run.get('invocations', [])):
+                      raise SystemExit('CodeQL analysis did not complete')
+                  for result in run.get('results', []):
+                      count += 1
+                      print('Review required:', result.get('ruleId', 'unknown'), result.get('level', 'warning'))
+          print('CodeQL findings:', count)
+          raise SystemExit(1 if count else 0)
+          PYCODEQL

@@ -52,8 +52,9 @@ potvrzeno zapnutí push protection / secret scanning / Dependabot alerts.
 Připravený import a postup: [GITHUB_SETUP.md](GITHUB_SETUP.md).
 
 CI se musí úspěšně provést a jeho konfigurace se musí sloučit na `main`.
-Pravidelné běhy a Dependabot se aktivují z výchozí větve. Zelený CodeQL upload
-není potvrzení nulových nálezů; sleduj také záložku Security.
+Pravidelné běhy a Dependabot se aktivují z výchozí větve. Po CodeQL uploadu následuje kontrola SARIF, která selže při každém nálezu.
+Čtení stávajících CodeQL alertů přes připojenou integraci také vrací HTTP 403;
+jejich celkový stav proto není ověřen.
 
 ## Hranice kontroly
 

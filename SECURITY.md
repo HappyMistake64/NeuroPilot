@@ -44,8 +44,9 @@ CI na pull requestech a při týdenní kontrole obsahuje:
   `pull_request_target` spouštění cizího kódu;
 - akce připnuté na celé commit SHA, lockfiles s integritou balíků a Dependabot.
 
-CodeQL upload hlásí nálezy do záložky Security; zelený job sám o sobě neznamená
-nulový počet nálezů. Bez aktivních ochranných pravidel větve lze CI obejít.
+CodeQL hlásí nálezy do záložky Security. Dodatečná kontrola SARIF zastaví job při
+každém nalezeném výsledku; samotný úspěšný upload nestačí. To neověřuje stav
+starších alertů na jiných větvích. Bez aktivních ochranných pravidel větve lze CI obejít.
 `.gitleaksignore` má pouze přesné výjimky pro ověřený hash ve starém reportu;
 nikdy do něj nepřidávej skutečný token nebo plošnou výjimku pro zdrojový kód.
 
