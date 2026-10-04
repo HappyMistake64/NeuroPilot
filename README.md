@@ -17,7 +17,7 @@ Python 3.10 nebo novější. ZIP rozbal a otevři terminál ve složce `NeuroPil
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements.txt
+python -m pip install --require-hashes -r requirements.lock.txt
 python server.py
 ```
 
@@ -27,7 +27,7 @@ Otevři **http://127.0.0.1:5000**. Ukončení: Ctrl+C. Na Fedoře/Ubuntu jde o s
 
 ```powershell
 py -m venv .venv
-.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m pip install --require-hashes -r requirements.lock.txt
 .venv\Scripts\python.exe server.py
 ```
 
@@ -78,7 +78,7 @@ Na Windows nastav proměnnou například přes `$env:NEUROPILOT_MODEL = "C:\mode
 ## Testy
 
 ```bash
-python -m pip install -r requirements-dev.txt
+python -m pip install --require-hashes -r requirements-dev.lock.txt
 python -m pytest tests -q
 python agent_test.py
 ```
@@ -86,7 +86,7 @@ python agent_test.py
 Volitelný test událostí webového rozhraní používá Node.js 22+ a jsdom. Sám spustí izolovaný server s dočasnými daty, která po dokončení odstraní:
 
 ```bash
-npm install
+npm ci --ignore-scripts
 npm run test:ui
 npm run test:rsi-ui
 ```
@@ -100,3 +100,9 @@ Základní agent lze spustit skriptem `run_chat.py`. Webový plánovač potřebu
 ## Rozsah nasazení
 
 Tato verze je určena pro osobní použití na localhostu. Neobsahuje uživatelské účty ani veřejné produkční nasazení. JSON zápisy jsou atomické a chráněné před souběhem vláken jednoho procesu. Více serverových procesů vyžaduje databázi a jiný způsob koordinace.
+
+## Zabezpečení
+
+Pravidla bezpečného provozu a soukromé hlášení problémů: [SECURITY.md](SECURITY.md).
+Administrativní ochrana větve a tokenů se zapíná zvlášť podle
+[postupu pro vlastníka](security/GITHUB_SETUP.md); samotné CI ji nenahrazuje.

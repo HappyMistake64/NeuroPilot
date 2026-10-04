@@ -1,5 +1,6 @@
 """Optional Gradio frontend. Use server.py for the lightweight offline planner."""
 import json
+from web_errors import public_error
 from ai_tools import chat_fn, autonomy_run, fetch_and_sum, load_memory, project_zip
 
 
@@ -10,7 +11,7 @@ def build_demo():
             try:
                 return function(*args)
             except (ValueError, RuntimeError, OSError) as error:
-                raise gr.Error(str(error)) from error
+                raise gr.Error(public_error(error)) from error
         return wrapped
     with gr.Blocks(title="NeuroPilot", analytics_enabled=False) as demo:
         gr.Markdown("# NeuroPilot\nVolitelné modelové rozhraní. Plánování vytváří textové návrhy; příkazy se neprovádějí. Model nastav přes NEUROPILOT_MODEL.")

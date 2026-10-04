@@ -1,5 +1,6 @@
 """NeuroPilot local planner. Run one process on loopback."""
 import json
+from web_errors import public_error
 import os
 import uuid
 from datetime import datetime, timedelta, date, timezone
@@ -65,18 +66,50 @@ def text_field(value, key):
         raise ValueError(f"Pole {key} musí obsahovat text (nejvýše 20 000 znaků).")
     return text.strip()
 
+def origin_parts(value):
+    """An Origin is only a scheme, host and optional port, never a URL path."""
+    parts = urlsplit(value)
+    if (parts.scheme not in {'http', 'https'} or not parts.hostname
+            or parts.username is not None or parts.password is not None
+            or parts.path or parts.query or parts.fragment):
+        raise ValueError('Invalid origin')
+    return parts.scheme, parts.hostname.lower(), parts.port or (443 if parts.scheme == 'https' else 80)
+
 @app.before_request
 def local_origin():
-    if urlsplit("http://" + request.host).hostname not in {"127.0.0.1", "localhost", "::1"}:
-        return jsonify(error="Povoleno pouze lokální připojení."), 403
-    if request.method not in {"GET", "HEAD", "OPTIONS"}:
-        origin = request.headers.get("Origin")
-        if origin and urlsplit(origin).netloc != request.host:
-            return jsonify(error="Cizí původ požadavku není povolen."), 403
+    try:
+        expected = origin_parts(request.scheme + '://' + request.host)
+        if expected[1] not in {'127.0.0.1', 'localhost', '::1'}:
+            raise ValueError('Non-local host')
+        if request.method not in {'GET', 'HEAD', 'OPTIONS'}:
+            if request.headers.get('Sec-Fetch-Site') in {'cross-site', 'same-site'}:
+                raise ValueError('Cross-origin browser request')
+            origin = request.headers.get('Origin')
+            if origin is not None and origin_parts(origin) != expected:
+                raise ValueError('Origin mismatch')
+    except ValueError:
+        return jsonify(error='Povoleno pouze lokální připojení ze stejného původu.'), 403
+
+@app.after_request
+def security_headers(response):
+    # Both frontends use external scripts; inline styles remain for existing CSS.
+    response.headers['Content-Security-Policy'] = (
+        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
+        "img-src 'self' data:; connect-src 'self'; object-src 'none'; "
+        "base-uri 'none'; frame-ancestors 'none'; form-action 'self'"
+    )
+    response.headers['X-Frame-Options'] = 'DENY'
+    response.headers['X-Content-Type-Options'] = 'nosniff'
+    response.headers['Referrer-Policy'] = 'no-referrer'
+    response.headers['Cross-Origin-Resource-Policy'] = 'same-origin'
+    response.headers['Permissions-Policy'] = 'camera=(), microphone=(), geolocation=()'
+    if response.is_json or request.path == '/export':
+        response.headers['Cache-Control'] = 'no-store'
+    return response
 
 @app.errorhandler(ValueError)
 def invalid(error):
-    return jsonify(error=str(error)), 400
+    return jsonify(error=public_error(error)), 400
 
 @app.errorhandler(HTTPException)
 def http_error(error):
