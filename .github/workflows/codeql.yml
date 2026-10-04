@@ -58,6 +58,9 @@ jobs:
                   for result in run.get('results', []):
                       count += 1
                       print('Review required:', result.get('ruleId', 'unknown'), result.get('level', 'warning'))
+                      for location in result.get('locations', []):
+                          physical = location.get('physicalLocation', {})
+                          print('Location:', physical.get('artifactLocation', {}).get('uri'), physical.get('region', {}).get('startLine'))
           print('CodeQL findings:', count)
           raise SystemExit(1 if count else 0)
           PYCODEQL

@@ -261,3 +261,31 @@ def test_browser_protections_cover_pages_data_and_errors(client, path):
     assert response.headers['Referrer-Policy'] == 'no-referrer'
     if response.is_json:
         assert response.headers['Cache-Control'] == 'no-store'
+
+
+def test_public_error_boundary_never_returns_arbitrary_exception_text():
+    from web_errors import public_error
+    for error in (OSError('/private/credentials/session.json'), ValueError('fixture-sensitive-value'), RuntimeError({'token':'fixture-sensitive-value'})):
+        message = public_error(error)
+        assert 'fixture-sensitive-value' not in message and '/private/' not in message
+    assert public_error(ValueError('Datum musí mít formát YYYY-MM-DD.')) == 'Datum musí mít formát YYYY-MM-DD.'
+
+
+def test_rsi_http_errors_do_not_expose_internal_details(client, monkeypatch):
+    from rsi import web
+    from rsi.common import RSIError
+    def failed_engine():
+        raise RSIError('fixture-sensitive-value /private/credentials/session.json')
+    monkeypatch.setattr(web, 'engine', failed_engine)
+    response = client.post('/rsi/api/codex/configure', json={'model':'fixture'})
+    assert response.status_code == 400
+    assert b'fixture-sensitive-value' not in response.data and b'/private/' not in response.data
+    assert response.json['error']
+
+
+def test_planner_error_handler_does_not_echo_internal_value_error(client, monkeypatch):
+    def fail(*args, **kwargs):
+        raise ValueError('fixture-sensitive-value')
+    monkeypatch.setattr(server, 'agent_chat', fail)
+    response = client.post('/think', json={'text':'hello'})
+    assert response.status_code == 400 and b'fixture-sensitive-value' not in response.data

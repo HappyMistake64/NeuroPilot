@@ -2,6 +2,7 @@
 import os
 import difflib
 import json
+from web_errors import public_error
 import threading
 from pathlib import Path
 from flask import Blueprint, request, jsonify, send_from_directory
@@ -40,7 +41,7 @@ def openai_status():
     try:
         accounts=Accounts();result=accounts.status();result['login']=login_status(accounts)
         return jsonify(result)
-    except (RSIError,OSError) as error:return jsonify(error=str(error)),400
+    except (RSIError,OSError) as error:return jsonify(error=public_error(error)),400
 
 @blueprint.route('/rsi/api/openai/<action>',methods=['POST'])
 def openai_action(action):
@@ -78,7 +79,7 @@ def openai_action(action):
                 atomic_json(obj.root/'config.json',dict(obj.cfg,provider='ollama'))
                 return jsonify(provider='ollama')
             return jsonify(error='Unknown OpenAI action'),400
-    except (RSIError,OSError,ValueError) as error:return jsonify(error=str(error)),400
+    except (RSIError,OSError,ValueError) as error:return jsonify(error=public_error(error)),400
 
 @blueprint.route('/rsi/api/codex/<action>',methods=['POST'])
 def codex_action(action):
@@ -98,7 +99,7 @@ def codex_action(action):
                 atomic_json(obj.root/'config.json',cfg)
                 return jsonify(provider='codex',model=model)
             return jsonify(error='Unknown Codex action'),400
-    except (RSIError,OSError,ValueError) as error:return jsonify(error=str(error)),400
+    except (RSIError,OSError,ValueError) as error:return jsonify(error=public_error(error)),400
 
 @blueprint.after_request
 def private_responses(response):
@@ -110,7 +111,7 @@ def private_responses(response):
 @blueprint.route('/rsi/api/run/<rid>')
 def report(rid):
     try: return jsonify(engine().registry.run(rid))
-    except RSIError as error: return jsonify(error=str(error)),404
+    except RSIError as error: return jsonify(error=public_error(error)),404
 
 @blueprint.route('/rsi/api/artifact/<aid>')
 def artifact(aid):
@@ -119,19 +120,19 @@ def artifact(aid):
         parent=obj.registry.artifact(item['parent']) if item['parent'] else None
         item['diff']=''.join(difflib.unified_diff((parent['source'] if parent else '').splitlines(True),item['source'].splitlines(True),fromfile='parent/strategy.py',tofile='candidate/strategy.py'))
         return jsonify(item)
-    except RSIError as error:return jsonify(error=str(error)),404
+    except RSIError as error:return jsonify(error=public_error(error)),404
 
 @blueprint.route('/rsi/api/init',methods=['POST'])
 def init():
     try:
         obj=engine()
         with obj.registry.exclusive(): return jsonify(obj.init())
-    except RSIError as error:return jsonify(error=str(error)),409
+    except RSIError as error:return jsonify(error=public_error(error)),409
 
 @blueprint.route('/rsi/api/stop/<rid>',methods=['POST'])
 def stop(rid):
     try: engine().registry.stop(rid);return jsonify(ok=True)
-    except RSIError as error:return jsonify(error=str(error)),404
+    except RSIError as error:return jsonify(error=public_error(error)),404
 
 @blueprint.route('/rsi/api/job',methods=['POST'])
 def job():
@@ -160,7 +161,7 @@ def job():
             else:
                 with obj.registry.exclusive():result={'active':obj.registry.rollback()}
             _last_job.update(status='finished',result=result)
-        except Exception as error: _last_job.update(status='failed',error=str(error))
+        except Exception as error: _last_job.update(status='failed',error=public_error(error))
         finally: _job_lock.release()
     threading.Thread(target=work,name='rsi-job',daemon=True).start()
     return jsonify(started=kind),202

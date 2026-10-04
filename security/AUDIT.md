@@ -22,9 +22,15 @@ Nejde o penetrační test ani záruku neexistence dalších zranitelností.
   MIME sniffingu, referrerů a ukládání JSON odpovědí do cache.
 - Doplněno ignorování osobní paměti, stavu agenta a generovaných projektů.
 
+První plný CodeQL běh navíc zachytil 7 míst s vracením textu výjimek do odpovědi
+(`py/stack-trace-exposure`). HTTP a Gradio hranice nyní používají pouze výslovně
+schválené konstantní hlášky; neznámé OS/SDK chyby mají obecnou odpověď bez cest,
+přístupových údajů nebo těla chybové odpovědi. Regrese ověřují i podvržený citlivý
+text ve výjimce. Nálezy nebyly potlačeny ani vyřazeny z CodeQL.
+
 ## Ověření
 
-**284 Python testů prošlo**, včetně 20 nových bezpečnostních regresí a skutečných
+**287 Python testů prošlo**, včetně 23 nových bezpečnostních regresí a skutečných
 zkoušek Bubblewrap/Docker. Prošel test agenta i oba DOM testy po instalaci ze
 zamčených závislostí. DOM testy neověřují vynucení CSP skutečným prohlížečem;
 regrese kontrolují odesílané hlavičky a chování serveru.

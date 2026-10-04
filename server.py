@@ -1,5 +1,6 @@
 """NeuroPilot local planner. Run one process on loopback."""
 import json
+from web_errors import public_error
 import os
 import uuid
 from datetime import datetime, timedelta, date, timezone
@@ -108,7 +109,7 @@ def security_headers(response):
 
 @app.errorhandler(ValueError)
 def invalid(error):
-    return jsonify(error=str(error)), 400
+    return jsonify(error=public_error(error)), 400
 
 @app.errorhandler(HTTPException)
 def http_error(error):

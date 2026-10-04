@@ -2,7 +2,7 @@
   "date": "2026-10-04",
   "base_commit": "70dd4578cebfad3f70847351d2f4c325b7eed295",
   "python_tests": {
-    "passed": 284,
+    "passed": 287,
     "live_sandboxes": [
       "bwrap",
       "docker"
@@ -59,5 +59,11 @@
     "Optional AI dependency audit is not model/GPU execution testing",
     "Host/Origin and response headers do not provide user authentication",
     "External URL DNS validation is not a network egress firewall"
-  ]
+  ],
+  "codeql_remediation": {
+    "initial_full_scan_findings": 7,
+    "rule": "py/stack-trace-exposure",
+    "fix": "Curated public error messages, arbitrary exception text never returned by HTTP/Gradio error handlers",
+    "suppressed": false
+  }
 }
